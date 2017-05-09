@@ -1,0 +1,35 @@
+@media(max-width:350px) {
+    
+}
+@media(max-width:500px) {
+    
+}
+@media (min-width: 500px) and (max-width: 767px) {
+  
+}
+@media (max-width: 767px) {
+  #banner h1, #innerbanner h1 {
+    font-size: 28px;
+  }
+  
+}
+@media (min-width: 768px) {
+   
+}
+@media(min-width:768px) and (max-width:992px) {
+   .clear-sm{
+      clear: left
+   }
+}
+@media(min-width:992px) and (max-width:1024px) {
+    
+}
+@media(min-width:1025px) and (max-width:1196px) {
+    
+}
+@media(min-width:1200px) {
+	
+} 
+@media(min-width:1600px) {
+	
+}
