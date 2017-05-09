@@ -75,7 +75,7 @@ class Common_model extends CI_Model {
 //                'uadd_post_code' => $this->input->post('pincode'),
 //                'uadd_city' => $this->input->post('city'),
 //                'user_type' => $this->input->post('user_type')
-//            );
+//            ); 
         $instant_activate = $this->input->post('send_invites');        
         $response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, $user_type, $instant_activate);
 

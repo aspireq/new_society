@@ -6,7 +6,7 @@
     <body>
         <?php echo $header; ?>
         <div class="container-fluid">
-            <?php echo $sidebar; ?>
+            <?php echo $sidebar; ?> 
             <div class="dashboard-wrapper">
                 <?php echo $top_menu; ?>
                 <div class="top-bar clearfix">

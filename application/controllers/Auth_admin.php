@@ -23,7 +23,7 @@ class Auth_admin extends CI_Controller {
 //            redirect('auth');
 //        }
         $this->data['userinfo'] = $this->userinfo = $this->flexi_auth->get_user_by_identity_row_array();
-        $this->user_id = $this->data['userinfo']['uacc_id'];
+        $this->user_id = $this->data['userinfo']['uacc_id']; 
     }
 
     function include_files() {
@@ -51,9 +51,9 @@ class Auth_admin extends CI_Controller {
             $this->load->model('demo_auth_model');
             $usernames = $this->input->post('username');
             $passwords = $this->input->post('password');
-            $blocks = $this->input->post('block');
-            $mobiles = $this->input->post('mobile');
-            $intercom = $this->input->post('intercom');
+//            $blocks = $this->input->post('block');
+//            $mobiles = $this->input->post('mobile');
+//            $intercom = $this->input->post('intercom');
             $emails = $this->input->post('email');
             foreach ($usernames as $key => $user) {
                 if ($usernames[$key] != "" && $passwords[$key] != "" && $emails[$key] != "") {
@@ -315,11 +315,6 @@ class Auth_admin extends CI_Controller {
         redirect('admin');
     }
 
-    function subcategories() {
-        $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-        $this->data = $this->include_files();
-        $this->load->view('admin/subcategories', $this->data);
-    }
 
     function get_user_account() {
         $data = $this->Admin_model->get_user_account();
@@ -331,15 +326,6 @@ class Auth_admin extends CI_Controller {
         die($data);
     }
 
-    function get_visitors() {
-        $data = $this->Admin_model->get_visitors();
-        die($data);
-    }
-
-    function get_categories() {
-        $data = $this->Admin_model->get_categories();
-        die($data);
-    }
 
     function get_subcategories() {
         $data = $this->Admin_model->get_subcategories();
@@ -396,8 +382,7 @@ class Auth_admin extends CI_Controller {
     function delete_record() {
         $table_name = $this->input->post('table_name');
         $table_coloum_name = $this->input->post('table_coloum');
-        $table_id = $this->input->post('id');
-        $table_name = $this->input->post('table_name');
+        $table_id = $this->input->post('id');        
         if ($this->input->post('image_folder')) {
             $recordinfo = $this->Common_model->select_where_row($table_name, array($table_coloum_name => $table_id));
             if ($recordinfo->image != null && file_exists(FCPATH . 'includes/' . $this->input->post('image_folder') . '/' . $recordinfo->image)) {
