@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 // Local URL
-$config['base_url'] = 'http://localhost/society/';
+$config['base_url'] = 'http://localhost/new_society/';
 //$config['base_url'] = 'http://www.appartmentadda.com/';
 
 /*

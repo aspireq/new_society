@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /society/
+RewriteBase /new_society/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
