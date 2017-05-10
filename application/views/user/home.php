@@ -22,14 +22,14 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="tabbable tabs-left clearfix">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#newsfeed" data-toggle="tab" aria-expanded="false">News Feed</a></li>
+                                    <li class=""><a href="#newsfeed" data-toggle="tab" aria-expanded="false">News Feed</a></li>
                                     <li class=""><a href="#tabOne" data-toggle="tab" aria-expanded="false">Groups</a></li>
                                     <li class=""><a href="#tabTwo" data-toggle="tab" aria-expanded="true">Photos</a></li>
                                     <li class=""><a href="#tabThree" data-toggle="tab" aria-expanded="false">Polls</a></li>
-                                    <li class=""><a href="#tabFour" data-toggle="tab" aria-expanded="false">Notices</a></li>
+                                    <li class="<?php echo ($notice == true) ? 'active' : '' ?>"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Notices</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="newsfeed">
+                                    <div class="tab-pane" id="newsfeed">
                                         <div class="row">
                                             <div class="col-md-10 col-md-offset-1 feed-card">
                                                 <div class="row">
@@ -337,24 +337,24 @@
                                         </div>
                                     </div>
                                     <!-- tab three -->
-                                    <div class="tab-pane" id="tabFour">
+                                    <div class="tab-pane <?php echo ($notice == true) ? 'active' : '' ?>" id="tabFour">
                                         <div class="createnotice row hidden">
-                                            <form class="form-horizontal col-sm-8">
+                                            <form class="form-horizontal col-sm-8" method="post">
                                                 <div class="form-group">
                                                     <div class="radio col-sm-12">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="1">&nbsp;&nbsp;Administration
+                                                            <input type="radio" name="notice_type" value="Administration">&nbsp;&nbsp;Administration
                                                         </label>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="1">&nbsp;&nbsp;General
+                                                            <input type="radio" name="notice_type" value="General">&nbsp;&nbsp;General
                                                         </label>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="1">&nbsp;&nbsp;Buy/Rent/Sell
+                                                            <input type="radio" name="notice_type" value="Buy/Rent/Sell">&nbsp;&nbsp;Buy/Rent/Sell
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-sm-2">id</label>
+                                                    <label class="control-label col-sm-2">From E-mail</label>
                                                     <div class="col-md-10">
                                                         <input type="" name="" placeholder="mehul@aspireq.com" class="form-control">
                                                     </div>
@@ -368,27 +368,27 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Brief Description</label>
                                                     <div class="col-md-10">
-                                                        <textarea class="form-control"></textarea>
+                                                        <textarea class="form-control" name="notice_description"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Notice Recepients</label>
                                                     <div class="col-md-10">
-                                                        <select class="form-control">
-                                                            <option>All Users</option>
-                                                            <option>All Owners</option>
-                                                            <option>Only Primary Contacts</option>
+                                                        <select class="form-control" name="recepients" id="recepients">
+                                                            <option value="All Users">All Users</option>
+                                                            <option value="All Owners">All Owners</option>
+                                                            <option value="Only Primary Contacts">Only Primary Contacts</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Detailed Description</label>
                                                     <div class="col-md-10">
-                                                        <textarea id="txtEditor"></textarea>
+                                                        <textarea id="txtEditor" name="detailed_description"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-12">
-                                                    <button class="btn btn-info">Post</button>
+                                                    <button class="btn btn-info" name="add_notice" id="add_notice" value="add_notice">Post</button>
                                                     <button class="btn btn-default btn-cancel">Cancel</button>
                                                 </div>
                                             </form>

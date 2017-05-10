@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2017 at 01:54 PM
+-- Generation Time: May 10, 2017 at 02:31 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -52931,6 +52931,8 @@ CREATE TABLE `user_accounts` (
   `uacc_password` varchar(60) NOT NULL DEFAULT '',
   `user_type` int(11) DEFAULT NULL COMMENT '1 - Owner, 2 - Tenant',
   `appartment_id` int(20) DEFAULT NULL,
+  `is_commitee_member` int(11) NOT NULL DEFAULT '0',
+  `designation` varchar(255) DEFAULT NULL,
   `uacc_ip_address` varchar(40) NOT NULL DEFAULT '',
   `uacc_salt` varchar(40) NOT NULL DEFAULT '',
   `uacc_activation_token` varchar(40) NOT NULL DEFAULT '',
@@ -52951,25 +52953,25 @@ CREATE TABLE `user_accounts` (
 -- Dumping data for table `user_accounts`
 --
 
-INSERT INTO `user_accounts` (`uacc_id`, `uacc_group_fk`, `uacc_email`, `uacc_username`, `uacc_password`, `user_type`, `appartment_id`, `uacc_ip_address`, `uacc_salt`, `uacc_activation_token`, `uacc_forgotten_password_token`, `uacc_forgotten_password_expire`, `uacc_update_email_token`, `uacc_update_email`, `uacc_active`, `uacc_suspend`, `uacc_fail_login_attempts`, `uacc_fail_login_ip_address`, `uacc_date_fail_login_ban`, `uacc_date_last_login`, `uacc_date_added`) VALUES
-(1, 3, 'admin@admin.com', 'admin', '$2a$08$lSOQGNqwBFUEDTxm2Y.hb.mfPEAt/iiGY9kJsZsd4ekLJXLD.tCrq', NULL, NULL, '::1', 'XKVT29q2Jr', '', '1e30025e37a60d90b39f79d4668f3945d42955d5', '2017-04-19 09:33:31', '', '', 1, 0, 0, '::1', '2017-04-11 10:48:53', '2017-05-09 10:45:26', '2011-01-01 00:00:00'),
-(2, 2, 'reseller@realgujarat.com', 'reseller', '$2a$08$7UzYgEuomZIErp6QU1ovzOHvB4d2.E5awHkfp.rvRwvPdvfFNm6iC', NULL, NULL, '::1', 'ZC38NNBPjF', '', '', '0000-00-00 00:00:00', '', '', 1, 0, 0, '', '0000-00-00 00:00:00', '2017-04-28 13:20:39', '2011-08-04 16:49:07'),
-(9, 2, 'asfasfasf@gmail.com', 'asasf', '$2a$08$G1AIqkSeSS4Cq8qclX846ejZxbVxX9xcUDx34PD5hGVapjcs5iPJi', NULL, NULL, '::1', 'nYTFhdGq6q', '30e6f350f9f868b9df0b42e4ea755fe4721e5856', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-04-07 10:52:37', '2017-04-07 10:52:37'),
-(13, 1, 'asfafaq1221214@gmail.com', 'asfasfasf13`13`', '$2a$08$9T0wuVCijkwHqI96ztyce.aKl5IB3oPEclPeBN86Dd7g4Il0ks.AW', NULL, NULL, '::1', 'tz3pK6Mdgz', 'e908cb9d81beb7ab011c1c346e435c0868108774', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-02 11:28:59', '2017-05-02 11:28:59'),
-(14, 1, 'asfafaq1221214111@gmail.com', '1251535321523', '$2a$08$1ZXg0a83oG6MztDv4Dm4X./OM3yHcEP5vNBHfphWiM8ZimSInHXI2', NULL, NULL, '::1', 'JchYKDhh7q', '97421eaa4a0ec9a8b0c3ee9869e1aa596f1ab141', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-02 11:29:30', '2017-05-02 11:29:30'),
-(19, 3, 'sfa111sf@gmail.com', 'asfasf', '$2a$08$hBfI4Ea7NLjInYKN9TXc4uJkdQKuKG49ns85qAH3Fk8g0611o1kSK', NULL, NULL, '::1', 'H9MfMSrYKw', '628d97ca886e97a9c3c07e44fd5786b0936c233b', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:14:24', '2017-05-03 07:14:24'),
-(20, 3, 'sfa111s124214124f@gmail.com', '2121421414', '$2a$08$PjxwjmxjnVTMbkNeYpXW/.I/7r9uK3rIFT6bG8rJwXboxer9D2Cmm', NULL, NULL, '::1', 'DgHv8dYgpc', '286cf9da1f092efee794606a4b810d152c373c1c', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:15:59', '2017-05-03 07:15:59'),
-(21, 3, 'sfa111s124214124111f@gmail.com', '2211241224', '$2a$08$BYUBpGsNRT82YkGdruuIEusgIXvgm1PuDJfgAE20i8XE/U1Cv4BrK', NULL, NULL, '::1', 'ntg86sXxJ4', 'd84c68ee8ffb0272dabff4bacf5c544ecd287b9f', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:18:25', '2017-05-03 07:18:25'),
-(22, 3, 'sfa111s12421412411241242141f@gmail.com', '22112412241212', '$2a$08$KaA78HBOnry/eStqmdxuQu/kr9VrbFcG9hN2yoxmQ94qAxSV.1V36', NULL, NULL, '::1', 'NqmVMtYFPK', 'b2317a7e01c537cdbbec556b620a44abcea3c409', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:19:47', '2017-05-03 07:19:47'),
-(23, 3, 'sfa111111s12421412411241242141f@gmail.com', '221124122412121', '$2a$08$yErwOaAi5ppp23hP8B2MieZxG1Z9qIMmKLsEnzQ39QIWFd5iRIYOS', 1, NULL, '::1', 'spR6DgknQh', 'b845a84c91b58ea9edc820b768e209567131bc7e', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:21:04', '2017-05-03 07:21:04'),
-(24, 3, 'asfafaq12212112112124111@gmail.com', 'asfasf41211111', '$2a$08$rGDTyH9j08.jIDz.ekP2NuMuYb8rSux3gl529oFG8OcVFThQ6C//e', 2, NULL, '::1', 'NjhPbnQhsZ', '6014395705d77c4dbf472c63ce8dcab69ead5f0e', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:33:12', '2017-05-03 07:33:12'),
-(25, 3, 'final@gmail.com', 'final', '$2a$08$VIjUrLJhE6Ff0rixd6FSQ.qvgNaTh56thZSLhWG3T4FEmHUAf6cAy', 1, NULL, '::1', 'wJF8G9SsWh', '715d8d4d68c2a9aee3ec8f368c8f18a32bfc44fa', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:53:13', '2017-05-03 07:53:13'),
-(26, 3, 'testaccount@gmail.com', 'testaccount', '$2a$08$apESzDk2CvG8mRuPVVD/EutRk0FhlsSTJozN7g7SH04BPJxy.wGsG', 1, NULL, '::1', 'g5gfbK5pcK', '87f2b2c2a29d99321fa3fc16ba8e7d4c7f0d8460', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 13:45:32', '2017-05-03 13:45:32'),
-(27, 3, 'testaccount1@gmail.com', 'testaccount1', '$2a$08$YGf2FKc2UQGltZYSjduN3.WlhdW.xi8HyNBtdG3z1bNeeWvydbX/S', 1, 366581, '::1', '6sPZ9rJpP9', 'fe20e23496adf988b1196ea1d253582ef24f4c30', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 13:46:35', '2017-05-03 13:46:35'),
-(30, 3, 'manual_user1@gmail.com', 'manual_user1', '$2a$08$2cAinm33bPTPInA0dSLK0e5LGlERc0u0RFFOCktngtQU/N5/jGUxW', NULL, NULL, '::1', 'W6yXRM978R', 'd6cfbfbbe9715464eec5f638209897181011e620', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
-(31, 3, 'manual_user1@gmail.com', 'manual_user1', '$2a$08$2cAinm33bPTPInA0dSLK0e5LGlERc0u0RFFOCktngtQU/N5/jGUxW', NULL, NULL, '::1', 'W6yXRM978R', 'd6cfbfbbe9715464eec5f638209897181011e620', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
-(32, 3, 'manual_user3@gmail.com', 'manual_user3', '$2a$08$.n9Zb5Hp1LYo5xbQoy3AjekotIR4dUvscTdhnDyvIKXGm5eEa/axm', NULL, NULL, '::1', '6FgZS9wpk2', 'f841a7131234a8a11503e71ca1f0c4fa0a62d675', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
-(33, 3, 'manual_user3@gmail.com', 'manual_user3', '$2a$08$.n9Zb5Hp1LYo5xbQoy3AjekotIR4dUvscTdhnDyvIKXGm5eEa/axm', NULL, NULL, '::1', '6FgZS9wpk2', 'f841a7131234a8a11503e71ca1f0c4fa0a62d675', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11');
+INSERT INTO `user_accounts` (`uacc_id`, `uacc_group_fk`, `uacc_email`, `uacc_username`, `uacc_password`, `user_type`, `appartment_id`, `is_commitee_member`, `designation`, `uacc_ip_address`, `uacc_salt`, `uacc_activation_token`, `uacc_forgotten_password_token`, `uacc_forgotten_password_expire`, `uacc_update_email_token`, `uacc_update_email`, `uacc_active`, `uacc_suspend`, `uacc_fail_login_attempts`, `uacc_fail_login_ip_address`, `uacc_date_fail_login_ban`, `uacc_date_last_login`, `uacc_date_added`) VALUES
+(1, 3, 'admin@admin.com', 'admin', '$2a$08$lSOQGNqwBFUEDTxm2Y.hb.mfPEAt/iiGY9kJsZsd4ekLJXLD.tCrq', NULL, 366581, 0, NULL, '::1', 'XKVT29q2Jr', '', '1e30025e37a60d90b39f79d4668f3945d42955d5', '2017-04-19 09:33:31', '', '', 1, 0, 0, '::1', '2017-04-11 10:48:53', '2017-05-10 13:38:00', '2011-01-01 00:00:00'),
+(2, 2, 'user@society.com', 'society', '$2a$08$7UzYgEuomZIErp6QU1ovzOHvB4d2.E5awHkfp.rvRwvPdvfFNm6iC', NULL, 366581, 1, 'Gate Keeper', '::1', 'ZC38NNBPjF', '', '', '0000-00-00 00:00:00', '', '', 1, 0, 0, '', '0000-00-00 00:00:00', '2017-04-28 13:20:39', '2011-08-04 16:49:07'),
+(9, 2, 'asfasfasf@gmail.com', 'asasf', '$2a$08$G1AIqkSeSS4Cq8qclX846ejZxbVxX9xcUDx34PD5hGVapjcs5iPJi', NULL, NULL, 0, NULL, '::1', 'nYTFhdGq6q', '30e6f350f9f868b9df0b42e4ea755fe4721e5856', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-04-07 10:52:37', '2017-04-07 10:52:37'),
+(13, 1, 'asfafaq1221214@gmail.com', 'asfasfasf13`13`', '$2a$08$9T0wuVCijkwHqI96ztyce.aKl5IB3oPEclPeBN86Dd7g4Il0ks.AW', NULL, NULL, 0, NULL, '::1', 'tz3pK6Mdgz', 'e908cb9d81beb7ab011c1c346e435c0868108774', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-02 11:28:59', '2017-05-02 11:28:59'),
+(14, 1, 'asfafaq1221214111@gmail.com', '1251535321523', '$2a$08$1ZXg0a83oG6MztDv4Dm4X./OM3yHcEP5vNBHfphWiM8ZimSInHXI2', NULL, NULL, 0, NULL, '::1', 'JchYKDhh7q', '97421eaa4a0ec9a8b0c3ee9869e1aa596f1ab141', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-02 11:29:30', '2017-05-02 11:29:30'),
+(19, 3, 'sfa111sf@gmail.com', 'asfasf', '$2a$08$hBfI4Ea7NLjInYKN9TXc4uJkdQKuKG49ns85qAH3Fk8g0611o1kSK', NULL, NULL, 0, NULL, '::1', 'H9MfMSrYKw', '628d97ca886e97a9c3c07e44fd5786b0936c233b', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:14:24', '2017-05-03 07:14:24'),
+(20, 3, 'sfa111s124214124f@gmail.com', '2121421414', '$2a$08$PjxwjmxjnVTMbkNeYpXW/.I/7r9uK3rIFT6bG8rJwXboxer9D2Cmm', NULL, NULL, 0, NULL, '::1', 'DgHv8dYgpc', '286cf9da1f092efee794606a4b810d152c373c1c', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:15:59', '2017-05-03 07:15:59'),
+(21, 3, 'sfa111s124214124111f@gmail.com', '2211241224', '$2a$08$BYUBpGsNRT82YkGdruuIEusgIXvgm1PuDJfgAE20i8XE/U1Cv4BrK', NULL, NULL, 0, NULL, '::1', 'ntg86sXxJ4', 'd84c68ee8ffb0272dabff4bacf5c544ecd287b9f', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:18:25', '2017-05-03 07:18:25'),
+(22, 3, 'sfa111s12421412411241242141f@gmail.com', '22112412241212', '$2a$08$KaA78HBOnry/eStqmdxuQu/kr9VrbFcG9hN2yoxmQ94qAxSV.1V36', NULL, NULL, 0, NULL, '::1', 'NqmVMtYFPK', 'b2317a7e01c537cdbbec556b620a44abcea3c409', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:19:47', '2017-05-03 07:19:47'),
+(23, 3, 'sfa111111s12421412411241242141f@gmail.com', '221124122412121', '$2a$08$yErwOaAi5ppp23hP8B2MieZxG1Z9qIMmKLsEnzQ39QIWFd5iRIYOS', 1, NULL, 0, NULL, '::1', 'spR6DgknQh', 'b845a84c91b58ea9edc820b768e209567131bc7e', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:21:04', '2017-05-03 07:21:04'),
+(24, 3, 'asfafaq12212112112124111@gmail.com', 'asfasf41211111', '$2a$08$rGDTyH9j08.jIDz.ekP2NuMuYb8rSux3gl529oFG8OcVFThQ6C//e', 2, NULL, 0, NULL, '::1', 'NjhPbnQhsZ', '6014395705d77c4dbf472c63ce8dcab69ead5f0e', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:33:12', '2017-05-03 07:33:12'),
+(25, 3, 'final@gmail.com', 'final', '$2a$08$VIjUrLJhE6Ff0rixd6FSQ.qvgNaTh56thZSLhWG3T4FEmHUAf6cAy', 1, NULL, 0, NULL, '::1', 'wJF8G9SsWh', '715d8d4d68c2a9aee3ec8f368c8f18a32bfc44fa', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 07:53:13', '2017-05-03 07:53:13'),
+(26, 3, 'testaccount@gmail.com', 'testaccount', '$2a$08$apESzDk2CvG8mRuPVVD/EutRk0FhlsSTJozN7g7SH04BPJxy.wGsG', 1, NULL, 0, NULL, '::1', 'g5gfbK5pcK', '87f2b2c2a29d99321fa3fc16ba8e7d4c7f0d8460', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 13:45:32', '2017-05-03 13:45:32'),
+(27, 3, 'testaccount1@gmail.com', 'testaccount1', '$2a$08$YGf2FKc2UQGltZYSjduN3.WlhdW.xi8HyNBtdG3z1bNeeWvydbX/S', 1, 366581, 0, 'Manager', '::1', '6sPZ9rJpP9', 'fe20e23496adf988b1196ea1d253582ef24f4c30', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-03 13:46:35', '2017-05-03 13:46:35'),
+(30, 3, 'manual_user1@gmail.com', 'manual_user1', '$2a$08$2cAinm33bPTPInA0dSLK0e5LGlERc0u0RFFOCktngtQU/N5/jGUxW', NULL, NULL, 0, NULL, '::1', 'W6yXRM978R', 'd6cfbfbbe9715464eec5f638209897181011e620', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
+(31, 3, 'manual_user1@gmail.com', 'manual_user1', '$2a$08$2cAinm33bPTPInA0dSLK0e5LGlERc0u0RFFOCktngtQU/N5/jGUxW', NULL, NULL, 0, NULL, '::1', 'W6yXRM978R', 'd6cfbfbbe9715464eec5f638209897181011e620', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
+(32, 3, 'manual_user3@gmail.com', 'manual_user3', '$2a$08$.n9Zb5Hp1LYo5xbQoy3AjekotIR4dUvscTdhnDyvIKXGm5eEa/axm', NULL, NULL, 0, NULL, '::1', '6FgZS9wpk2', 'f841a7131234a8a11503e71ca1f0c4fa0a62d675', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11'),
+(33, 3, 'manual_user3@gmail.com', 'manual_user3', '$2a$08$.n9Zb5Hp1LYo5xbQoy3AjekotIR4dUvscTdhnDyvIKXGm5eEa/axm', NULL, NULL, 0, NULL, '::1', '6FgZS9wpk2', 'f841a7131234a8a11503e71ca1f0c4fa0a62d675', '', '0000-00-00 00:00:00', '', '', 0, 0, 0, '', '0000-00-00 00:00:00', '2017-05-09 10:48:11', '2017-05-09 10:48:11');
 
 -- --------------------------------------------------------
 
@@ -53011,22 +53013,16 @@ CREATE TABLE `user_login_sessions` (
 --
 
 INSERT INTO `user_login_sessions` (`usess_uacc_fk`, `usess_series`, `usess_token`, `usess_login_date`) VALUES
+(1, '', '07b79b0f14b702b08c49b5beab95446860371755', '2017-05-10 14:29:12'),
 (2, '', '24cdacba86160ce20e6d80acb1c389b59b1e6e58', '2017-04-26 13:51:17'),
 (2, '', '2b29443560a5e200bce1aa491a4cc3f591cf948d', '2017-04-26 14:31:44'),
-(2, '', '3a0c75fa592115774d17e16b055145e8d259c803', '2017-04-26 12:10:33'),
 (2, '', '429ea75e97dadd8d544dac1ede03867ef2efc915', '2017-04-28 10:47:56'),
-(2, '', '52887c103be5a8ee761917859ad4cbe6a3c8487e', '2017-04-26 09:00:06'),
 (2, '', '534083cf8aa54ab37b19c57d688446cf1da48d93', '2017-04-28 13:20:39'),
 (2, '', '54620befd37b08ceeb42ef089d55150ade33007f', '2017-04-26 13:46:30'),
-(2, '', '8b09f544db588e6766bd89c133c4dc8923af153a', '2017-04-26 09:28:33'),
 (2, '', '9a930e957a3135bfe8480eacf3368cd2046b8040', '2017-04-28 08:25:10'),
 (2, '', 'b959848264a65d514539772d492c3a6be4fc5732', '2017-04-26 14:31:44'),
-(2, '', 'b98908fd9e473337de292662f86ca292c2d4d5b8', '2017-04-25 14:13:19'),
-(2, '', 'c47f0081f52a9d41ccbb57da2340e20560ffa392', '2017-04-26 08:53:50'),
-(2, '', 'db711134d92579b6e4f46f8b046bb18024643b55', '2017-04-25 13:56:55'),
 (2, '', 'de684cd3a8aae16044d9b061eb399bb9d3f7971a', '2017-04-26 13:42:19'),
-(2, '', 'e7e9b9bbc04f05d7da84166bb69e58684eb25bfe', '2017-04-26 13:42:01'),
-(1, '', 'f8585e5349ac90501b1b0f29f2c7738d536d01ca', '2017-05-09 13:48:57');
+(2, '', 'e7e9b9bbc04f05d7da84166bb69e58684eb25bfe', '2017-04-26 13:42:01');
 
 -- --------------------------------------------------------
 
@@ -53055,7 +53051,8 @@ INSERT INTO `user_privileges` (`upriv_id`, `upriv_name`, `upriv_desc`) VALUES
 (8, 'Update Privileges', 'User can update user privileges.'),
 (9, 'Delete Users', 'User can delete user accounts.'),
 (10, 'Delete User Groups', 'User can delete user groups.'),
-(11, 'Delete Privileges', 'User can delete user privileges.');
+(11, 'Delete Privileges', 'User can delete user privileges.'),
+(12, 'Manage Users', 'user can add,edit,delete records using this permission\r\n');
 
 -- --------------------------------------------------------
 
@@ -53119,7 +53116,9 @@ INSERT INTO `user_privilege_users` (`upriv_users_id`, `upriv_users_uacc_fk`, `up
 (12, 2, 1),
 (13, 2, 2),
 (14, 2, 3),
-(15, 2, 6);
+(15, 2, 6),
+(23, 2, 12),
+(25, 27, 12);
 
 --
 -- Indexes for dumped tables
@@ -53281,7 +53280,7 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `user_privileges`
 --
 ALTER TABLE `user_privileges`
-  MODIFY `upriv_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `upriv_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user_privilege_groups`
 --
@@ -53291,7 +53290,7 @@ ALTER TABLE `user_privilege_groups`
 -- AUTO_INCREMENT for table `user_privilege_users`
 --
 ALTER TABLE `user_privilege_users`
-  MODIFY `upriv_users_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `upriv_users_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
