@@ -38,6 +38,17 @@ class User extends CI_Controller {
     }
 
     function home() {
+        $notice = false;
+        if ($_GET['name']) {
+            $notice = true;
+        }
+        if ($this->input->post('add_notice') == 'add_notice') {
+            print_r(htmlentities($this->input->post('detailed_description')));
+            echo "<pre>";
+            print_r($this->input->post());
+            die();
+        }
+        $this->data['notice'] = $notice;
         $this->data = $this->include_files();
         $this->load->view('user/home', $this->data);
     }

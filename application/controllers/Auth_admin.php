@@ -79,12 +79,11 @@ class Auth_admin extends CI_Controller {
                 } else {
                     $this->Common_model->delete_where('user_privilege_users', array('upriv_users_uacc_fk' => $user, 'upriv_users_upriv_fk' => $previleg_id->upriv_id));
                 }
-                
             }
             $this->data['message'] = "permissions added successfully !";
             $this->data['message_type'] = true;
         }
-        $this->data['users'] = $users = $this->Admin_model->get_users($this->appartment_id, $this->user_id);
+        $this->data['users'] = $this->Admin_model->get_users($this->appartment_id, $this->user_id);
         $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
         $this->data = $this->include_files();
         $this->load->view('admin/manage_users', $this->data);
@@ -176,31 +175,6 @@ class Auth_admin extends CI_Controller {
         $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
         $this->data = $this->include_files();
         $this->load->view('admin/profile_setup', $this->data);
-    }
-
-    function businesses() {
-        $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-        $this->data = $this->include_files();
-        $this->load->view('admin/businesses', $this->data);
-    }
-
-    function business_detail($business_id) {
-        $this->data['business'] = $businessinfo = $this->Common_model->get_business($business_id);
-        $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-        $this->data = $this->include_files();
-        $this->load->view('admin/business_detail', $this->data);
-    }
-
-    function categories() {
-        $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-        $this->data = $this->include_files();
-        $this->load->view('admin/categories', $this->data);
-    }
-
-    function visitor_adds() {
-        $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-        $this->data = $this->include_files();
-        $this->load->view('admin/visitor_adds', $this->data);
     }
 
     public function file_check($str) {
@@ -342,16 +316,6 @@ class Auth_admin extends CI_Controller {
         die($data);
     }
 
-    function get_business() {
-        $data = $this->Admin_model->get_business();
-        die($data);
-    }
-
-    function get_subcategories() {
-        $data = $this->Admin_model->get_subcategories();
-        die($data);
-    }
-
     function record_status() {
         $table_name = $this->input->post('table_name');
         $table_coloum_name = $this->input->post('table_coloum');
@@ -386,17 +350,6 @@ class Auth_admin extends CI_Controller {
         $result = $this->Common_model->select_where_row($table_name, array($table_coloum_name => $table_id));
         echo json_encode($result);
         die();
-    }
-
-    function business_status() {
-        $recordinfo = $this->Common_model->select_where_row('businesses', array('id' => $this->input->post('id')));
-        if ($recordinfo->is_approved == 1) {
-            $status = 0;
-        } else {
-            $status = 1;
-        }
-        $result = $this->Common_model->select_update('businesses', array('is_approved' => $status), array('id' => $this->input->post('id')));
-        die($result);
     }
 
     function delete_record() {
