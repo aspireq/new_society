@@ -784,3 +784,12 @@ a.socialIcon:hover, .socialHoverClass {
 .m-t-15{
    margin-top:15px
 }
+
+/*adda profile*/
+.addaspec .nav-tabs {
+    background:#b5b5b5;
+}
+.addaspec .nav-tabs > li.active > a{
+    background: #3949AB !important;
+    border-radius:0
+}
