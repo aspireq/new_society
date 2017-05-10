@@ -66,7 +66,7 @@ class Common_model extends CI_Model {
         // $this->form_validation->set_rules($validation_rules);
         //if ($this->form_validation->run()) {
 
-        $user_type = 3;
+        $user_type = 3; 
         //$email = $this->input->post('register_email_address');
         //$username = $this->input->post('register_username');
         //$password = $this->input->post('passwordmain');
