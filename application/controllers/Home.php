@@ -98,4 +98,9 @@ class Home extends CI_Controller {
         $this->load->view('visitor/contact', $this->data);
     }
 
+    function homepage() {
+        $this->data = $this->include_files();
+        $this->load->view('visitor/homepage', $this->data);
+    }
+
 }

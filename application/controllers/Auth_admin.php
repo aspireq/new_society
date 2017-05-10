@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Auth_admin extends CI_Controller { 
+class Auth_admin extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -23,7 +23,8 @@ class Auth_admin extends CI_Controller {
 //            redirect('auth');
 //        }
         $this->data['userinfo'] = $this->userinfo = $this->flexi_auth->get_user_by_identity_row_array();
-        $this->user_id = $this->data['userinfo']['uacc_id']; 
+        $this->user_id = $this->data['userinfo']['uacc_id'];
+        $this->appartment_id = $this->data['userinfo']['appartment_id'];
     }
 
     function include_files() {
@@ -47,7 +48,7 @@ class Auth_admin extends CI_Controller {
     }
 
     function manage_users() {
-        if ($this->input->post()) {
+        if ($this->input->post('submit') == 'add_users') {
             $this->load->model('demo_auth_model');
             $usernames = $this->input->post('username');
             $passwords = $this->input->post('password');
@@ -62,7 +63,20 @@ class Auth_admin extends CI_Controller {
                     $this->data['message_type'] = false;
                 }
             }
+        } else if ($this->input->post('add_permission') == 'add_permission') {
+            foreach ($this->input->post('user_ids') as $key => $user) {
+                $is_commitee_member = (isset($this->input->post('committee_member')[$key])) ? 1 : 0;
+                $this->Common_model->select_update('user_accounts', array('designation' => $this->input->post('designation')[$key], 'is_commitee_member' => $is_commitee_member), array('uacc_id' => $user));
+                $manage_users = (isset($this->input->post('manage_users')[$key])) ? 1 : 0;
+                if ($manage_users == 1) {
+                    echo "Add !!!";
+                } else {
+                    echo "Delete!!!";
+                }
+            }
+            die();
         }
+        $this->data['users'] = $users = $this->Admin_model->get_users($this->appartment_id, $this->user_id);
         $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
         $this->data = $this->include_files();
         $this->load->view('admin/manage_users', $this->data);
@@ -315,7 +329,6 @@ class Auth_admin extends CI_Controller {
         redirect('admin');
     }
 
-
     function get_user_account() {
         $data = $this->Admin_model->get_user_account();
         die($data);
@@ -325,7 +338,6 @@ class Auth_admin extends CI_Controller {
         $data = $this->Admin_model->get_business();
         die($data);
     }
-
 
     function get_subcategories() {
         $data = $this->Admin_model->get_subcategories();
@@ -382,7 +394,7 @@ class Auth_admin extends CI_Controller {
     function delete_record() {
         $table_name = $this->input->post('table_name');
         $table_coloum_name = $this->input->post('table_coloum');
-        $table_id = $this->input->post('id');        
+        $table_id = $this->input->post('id');
         if ($this->input->post('image_folder')) {
             $recordinfo = $this->Common_model->select_where_row($table_name, array($table_coloum_name => $table_id));
             if ($recordinfo->image != null && file_exists(FCPATH . 'includes/' . $this->input->post('image_folder') . '/' . $recordinfo->image)) {

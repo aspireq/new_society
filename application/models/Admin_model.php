@@ -10,7 +10,7 @@ class Admin_model extends CI_Model {
         return $CI->$key;
     }
 
-    function get_user_account() { 
+    function get_user_account() {
         $this->load->library('Datatables');
         $this->datatables->select('user_accounts.reffrence_link as reffrence_link,user_accounts.uacc_active as uacc_active,user_accounts.uacc_admin_approved as uacc_admin_approved,user_accounts.earnings as earnings,user_accounts.uacc_username as uacc_username,user_accounts.uacc_group_fk as uacc_group_fk,user_accounts.uacc_email as uacc_email,user_accounts.uacc_id as uacc_id,user_accounts.uacc_ip_address as uacc_ip_address ,user_accounts.uacc_date_last_login as uacc_date_last_login,user_accounts.uacc_suspend as uacc_suspend');
         $this->datatables->from('user_accounts');
@@ -116,6 +116,24 @@ class Admin_model extends CI_Model {
         $this->session->set_flashdata('message', validation_errors());
         $this->session->set_flashdata('inserted_user_id', false);
         return FALSE;
+    }
+
+    function get_users($appartment_id, $user_id) {
+        $this->db->select();
+        $this->db->from('user_accounts');
+        $this->db->where('appartment_id', $appartment_id);
+        $this->db->where('uacc_id !=', $user_id);
+        $qry = $this->db->get();
+        $final_data = array();
+        foreach ($qry->result() as $key => $row) {
+            $final_data[$key] = $row;
+            $result_arr = $this->db->query('select * from user_privilege_users where upriv_users_uacc_fk = "' . $row->uacc_id . '"')->result();
+            foreach ($result_arr as $newkey => $value) {
+                $result_arr1 = $this->db->query('select upriv_name from user_privileges where upriv_id = "' . $value->upriv_users_upriv_fk . '"')->row();
+                $final_data[$key]->permission[$newkey] = $result_arr1->upriv_name;
+            }
+        }
+        return $final_data;
     }
 
 }

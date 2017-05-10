@@ -111,7 +111,7 @@
                                                     <label class="radio-inline"><input type="radio" name="send_invites" id="not_send_invites" value="<?php echo false; ?>" checked="">Do not Send Invites</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button class="btn btn-info" onclick = "return validate()" type="submit" name = "submit" id="CreateAccounts">Create User Account</button>                                                     
+                                                    <button class="btn btn-info" onclick = "return validate()" type="submit" name = "submit" id="CreateAccounts" value="add_users">Create User Account</button>                                                     
                                                     <button class="btn btn-primary" type="button" onclick="window.location.href = '<?php echo base_url(); ?>auth_admin/manage_users'">Delete all of the above records</button>
                                                 </div>
                                             </div>
@@ -126,7 +126,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="table-responsive">
-                                                                <form>
+                                                                <form method="post">
                                                                     <table class="table m-0">
                                                                         <tbody>
                                                                             <tr>
@@ -223,110 +223,76 @@
                                     <!-- tab one -->
                                     <div class="tab-pane" id="tabTwo">
                                         <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Sl.No</th>
-                                                        <th>User</th>
-                                                        <th>Is Committee Member?</th>
-                                                        <th>Designation</th>
-                                                        <th>Manage Users</th>
-                                                        <th>HelpDesk Tracker</th>
-                                                        <th>Income Tracker</th>
-                                                        <th>Expense Tracker</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            1
-                                                        </td>
-                                                        <td><a href="#myModal" data-toggle="modal">Jignesh Bhaty 6-124</a></td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <input type="" name="" placeholder="" class="form-control">
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            2
-                                                        </td>
-                                                        <td><a href="#myModal" data-toggle="modal">Jignesh Bhaty 6-124</a></td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <input type="" name="" placeholder="" class="form-control">
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <form method="post">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sl.No</th>
+                                                            <th>User</th>
+                                                            <th>Is Committee Member?</th>
+                                                            <th>Designation</th>
+                                                            <th>Manage Users</th>
+                                                            <th>HelpDesk Tracker</th>
+                                                            <th>Income Tracker</th>
+                                                            <th>Expense Tracker</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $i = 1;
+                                                        foreach ($users as $user) {
+                                                            ?>
+                                                        <input type="text" name="user_ids[]" value="<?php echo $user->uacc_id; ?>">
+                                                        <tr>
+                                                            <td><?php echo $i; ?></td>
+                                                            <td><a href="#myModal" data-toggle="modal"><?php echo $user->uacc_username; ?> 6-124</a></td>
+                                                            <td>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox" name="committee_member[]" id="committee_member-<?php echo $user->uacc_id; ?>" value="1" <?php echo ($user->is_commitee_member == 1) ? 'checked' : ''; ?>>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="designation[]" id="designation<?php echo $user->uacc_id; ?>" placeholder="" class="form-control" value="<?php echo ($user->designation != "") ? $user->designation : '';?>">
+                                                            </td>
+                                                            <td>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox" name="manage_users[]" id="manage_users-<?php echo $user->uacc_id; ?>" value="1" <?php echo (in_array('Manage Users', $user->permission)) ? 'checked' : '';?>>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox">
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox">
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox">
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>    
+                                                        <?php
+                                                        $i++;
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-info" name="add_permission" id="add_permission" value="add_permission" type="submit">Save</button>
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- tab two -->
