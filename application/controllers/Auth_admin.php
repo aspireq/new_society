@@ -52,9 +52,9 @@ class Auth_admin extends CI_Controller {
             $this->load->model('demo_auth_model');
             $usernames = $this->input->post('username');
             $passwords = $this->input->post('password');
-//            $blocks = $this->input->post('block');
-//            $mobiles = $this->input->post('mobile');
-//            $intercom = $this->input->post('intercom');
+//          $blocks = $this->input->post('block');
+//          $mobiles = $this->input->post('mobile');
+//          $intercom = $this->input->post('intercom');
             $emails = $this->input->post('email');
             foreach ($usernames as $key => $user) {
                 if ($usernames[$key] != "" && $passwords[$key] != "" && $emails[$key] != "") {
@@ -67,14 +67,22 @@ class Auth_admin extends CI_Controller {
             foreach ($this->input->post('user_ids') as $key => $user) {
                 $is_commitee_member = (isset($this->input->post('committee_member')[$key])) ? 1 : 0;
                 $this->Common_model->select_update('user_accounts', array('designation' => $this->input->post('designation')[$key], 'is_commitee_member' => $is_commitee_member), array('uacc_id' => $user));
+                
+                // For Manage Users
                 $manage_users = (isset($this->input->post('manage_users')[$key])) ? 1 : 0;
+                $previleg_id = $this->Common_model->select_where_row('user_privileges', array('upriv_name' => 'Manage Users'));
                 if ($manage_users == 1) {
-                    echo "Add !!!";
+                    $check_existings = $this->Common_model->select_where_row('user_privilege_users', array('upriv_users_uacc_fk' => $user, 'upriv_users_upriv_fk' => $previleg_id->upriv_id));
+                    if (empty($check_existings)) {
+                        $this->Common_model->insert('user_privilege_users', array('upriv_users_uacc_fk' => $user, 'upriv_users_upriv_fk' => $previleg_id->upriv_id));
+                    }
                 } else {
-                    echo "Delete!!!";
+                    $this->Common_model->delete_where('user_privilege_users', array('upriv_users_uacc_fk' => $user, 'upriv_users_upriv_fk' => $previleg_id->upriv_id));
                 }
+                
             }
-            die();
+            $this->data['message'] = "permissions added successfully !";
+            $this->data['message_type'] = true;
         }
         $this->data['users'] = $users = $this->Admin_model->get_users($this->appartment_id, $this->user_id);
         $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];

@@ -242,7 +242,7 @@
                                                         $i = 1;
                                                         foreach ($users as $user) {
                                                             ?>
-                                                        <input type="text" name="user_ids[]" value="<?php echo $user->uacc_id; ?>">
+                                                        <input type="hidden" name="user_ids[]" value="<?php echo $user->uacc_id; ?>">
                                                         <tr>
                                                             <td><?php echo $i; ?></td>
                                                             <td><a href="#myModal" data-toggle="modal"><?php echo $user->uacc_username; ?> 6-124</a></td>
