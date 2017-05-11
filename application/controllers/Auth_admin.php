@@ -67,7 +67,7 @@ class Auth_admin extends CI_Controller {
             foreach ($this->input->post('user_ids') as $key => $user) {
                 $is_commitee_member = (isset($this->input->post('committee_member')[$key])) ? 1 : 0;
                 $this->Common_model->select_update('user_accounts', array('designation' => $this->input->post('designation')[$key], 'is_commitee_member' => $is_commitee_member), array('uacc_id' => $user));
-                
+
                 // For Manage Users
                 $manage_users = (isset($this->input->post('manage_users')[$key])) ? 1 : 0;
                 $previleg_id = $this->Common_model->select_where_row('user_privileges', array('upriv_name' => 'Manage Users'));
@@ -143,6 +143,8 @@ class Auth_admin extends CI_Controller {
         } else if ($this->input->post('appartmentinfo') == 'appartmentinfo') {
             $appartment_info = array(
                 'user_id' => $this->user_id,
+                'appartment_id' => $this->userinfo['appartment_id'],
+                'appartment_name' => $this->userinfo['apartmentname'],
                 'address' => $this->input->post('address'),
                 'city' => $this->input->post('city_name'),
                 'state' => $this->input->post('state_name'),

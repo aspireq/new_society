@@ -102,6 +102,7 @@ class Demo_auth_model extends CI_Model {
             $password = $this->input->post('passwordmain');
 
             $profile_data = array(
+                'apartmentname' => $this->input->post('apartmentname'),
                 'uadd_address_01' => $this->input->post('address'),
                 'uadd_post_code' => $this->input->post('pincode'),
                 'uadd_city' => $this->input->post('city'),

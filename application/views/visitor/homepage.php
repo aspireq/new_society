@@ -1,28 +1,29 @@
 <?php echo $header; ?>
 <section id="innerbanner">
     <div class="container-fluid">
-        <h1>zerogravity Owners and Residents Group</h1>
-        <h3>Join now to connect with other owners/residents of zerogravity.</h3>
+        <h1><?php echo $appartment_info->appartment_name; ?> Owners and Residents Group</h1>
+        <h3>Join now to connect with other owners/residents of <?php echo $appartment_info->appartment_name; ?>.</h3>
     </div>
 </section>
-
 <section>
     <div class="container">
         <div class="row">
             <br/>
             <div class="col-md-10">
-                <h3>Welcome to zerogravity ADDA!</h3>
-                <p><i class="fa fa-map-marker"></i>&nbsp;Location: Adarsh Apparment, Ahmedabad-388026 </p>
+                <h3>Welcome to <?php echo $appartment_info->appartment_name; ?>!</h3>
+                <p><i class="fa fa-map-marker"></i>&nbsp;Location: 
+                    <?php echo $appartment_info->address; ?><?php echo ($appartment_info->city != "") ? ', ' . $appartment_info->city : '' ?>
+                    <?php echo ($appartment_info->state != "") ? ', ' . $appartment_info->state : '' ?>
+                    <?php echo ($appartment_info->pincode != "") ? ', ' . $appartment_info->pincode : '' ?>
+                </p>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-raised btn-info btn-block btn-joinadda">Join Now</button>
+                <button class="btn btn-raised btn-info btn-block btn-joinadda" data-toggle="modal" data-target="#joinmodal">Join Now</button>
             </div>
             <div class="col-md-12">
                 <hr/>
-                <h3>About Adda</h3>
-                <p>If you are an Owner, or Tenant residing in zerogravity, then join this group.</p>
-                <p>In ADDA you can hangout with all fellow residents and owners of zerogravity. You get to know each other, have conversations, form groups, share photos, manage your apartment and stay connected to your management committee or resident welfare association. Together we grow as a community. Join us and be a part of our smart and vibrant community!</p>
-                <p>Also, do not forget to download the ADDA app for Android or iOS to stay connected to your apartment and neighbours from anywhere!</p>
+                <h3>About <?php echo $appartment_info->appartment_name; ?></h3>
+                <p><?php echo $appartment_info->info; ?></p>
             </div>
         </div>
         <div class="row">
@@ -31,8 +32,8 @@
                 <div class="addaspec">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#spec" aria-controls="spec" role="tab" data-toggle="tab">Specification</a></li>
-                      <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">Location</a></li>
+                        <li role="presentation" class="active"><a href="#spec" aria-controls="spec" role="tab" data-toggle="tab">Specification</a></li>
+                        <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">Location</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -49,16 +50,20 @@
                                             <td>72</td>
                                         </tr>
                                         <tr>
-                                            <td>Flat type</td>
-                                            <td>2 BHK</td>
+                                            <td>Association Name</td>
+                                            <td><?php echo ($appartment_info->association_name) ? $appartment_info->association_name : 'N/A'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Amount</td>
-                                            <td>22 Lacs</td>
+                                            <td>Contact</td>
+                                            <td><?php echo ($appartment_info->phone) ? $appartment_info->phone : 'N/A'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Other Description</td>
-                                            <td>112 sq. yard,Nature view, Lake, Peace, 4 KM railway station,12 KM Airport, 2 KM state bus depot, 50...<a href="#">View Details</a></td>
+                                            <td>Builder URL</td>
+                                            <td><?php echo ($appartment_info->builder_url) ? $appartment_info->builder_url : 'N/A'; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amenities</td>
+                                            <td><?php echo $appartment_info->amenities; ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -85,7 +90,7 @@
                     <li><i class="fa fa-check"></i>&nbsp;Post Activities, Events and Notices</li>
                 </ul>
             </div>
-             <div class="col-md-4">
+            <div class="col-md-4">
                 <h4>Manage your Apartment</h4>
                 <ul class="list">
                     <li><i class="fa fa-check"></i>&nbsp;Pay Maintanance Bills</li>
@@ -93,7 +98,7 @@
                     <li><i class="fa fa-check"></i>&nbsp;Manage Visitors</li>
                 </ul>
             </div>
-             <div class="col-md-4">
+            <div class="col-md-4">
                 <h4>Stay connected to your society management</h4>
                 <ul class="list">
                     <li><i class="fa fa-check"></i>&nbsp;Get Notifications and Updates</li>
@@ -105,9 +110,7 @@
     </div>
     <br/>
 </section>
-
-<?php echo $footer; ?>   
-
+<?php echo $footer; ?>
 <script src="<?php echo base_url(); ?>include_files/user/js/jquery-1.11.3.min.js"></script>
 <script src="<?php echo base_url(); ?>include_files/user/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>include_files/user/js/material.min.js"></script>

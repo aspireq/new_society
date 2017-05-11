@@ -98,7 +98,9 @@ class Home extends CI_Controller {
         $this->load->view('visitor/contact', $this->data);
     }
 
-    function homepage() {
+    function page() {
+        $appartment_id = $_GET['appartment_id'];
+        $this->data['appartment_info'] = $this->Common_model->select_where_row('appartment_info', array('appartment_id' => $appartment_id));
         $this->data = $this->include_files();
         $this->load->view('visitor/homepage', $this->data);
     }

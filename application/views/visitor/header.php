@@ -253,3 +253,63 @@
                 </div>
             </div>
         </div>
+
+        <!-- join modal -->
+        <div class="modal fade" id="joinmodal" tabindex="-1" role="dialog" aria-labelledby="registerblock">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content row">                    
+                    <div class="col-md-12">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="registerblock">Join Your Apartment Complex</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="registerform" data-toggle="validator" role="form" method="post" id="register_user" action="<?php echo base_url(); ?>home/register">
+                                <div id="register_message">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="register_email_address">Email<sup>*</sup></label>
+                                        <input class="form-control" id="register_username" name="register_email_address" type="email" data-error="Enter valid email" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="register_username">Username<sup>*</sup></label>
+                                        <input class="form-control" id="register_username" name="register_username" type="text" data-error="Enter valid username" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="mobile_no">Phone / Mobile <sup>*</sup></label>
+                                        <input class="form-control" id="mobile_no" name="mobile_no" type="text" data-error="Enter valid phone/mobile number" required maxlength="10">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="passwordmain">Password<sup>*</sup></label>
+                                        <input class="form-control" id="passwordmain" type="password" name="passwordmain" data-error="Enter password" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="inputPasswordConfirm">Re-enter Password<sup>*</sup></label>
+                                        <input class="form-control" id="inputPasswordConfirm" type="password" name="inputPasswordConfirm" data-error="Confirm password must be match with password" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-raised btn-info btn-block" name="signup_user" id="signup_user">Sign Up <i class="fa fa-send"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

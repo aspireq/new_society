@@ -87,7 +87,7 @@
                                                 <p class="plan2-price"><span class="icon-domain"></span></p>
                                                 <ul class="plan2-details">
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="<?php echo base_url();?>home/page?appartment_id=<?php echo $userinfo['appartment_id'];?>">
                                                             <span class="icon-check2"></span>
                                                             <h4 class="plan2-name">Public page</h4>
                                                         </a>
