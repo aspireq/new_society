@@ -9,26 +9,31 @@
     <div class="container">
         <div class="row">
             <br/>
-            <div class="col-md-10">
-                <h3>Welcome to <?php echo $appartment_info->appartment_name; ?>!</h3>
-                <p><i class="fa fa-map-marker"></i>&nbsp;Location: 
-                    <?php echo $appartment_info->address; ?><?php echo ($appartment_info->city != "") ? ', ' . $appartment_info->city : '' ?>
-                    <?php echo ($appartment_info->state != "") ? ', ' . $appartment_info->state : '' ?>
-                    <?php echo ($appartment_info->pincode != "") ? ', ' . $appartment_info->pincode : '' ?>
-                </p>
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                <h3 class="blue">Welcome to zerogravity ADDA!</h3>
+                <p><b><i class="fa fa-map-marker"></i>&nbsp;Location:</b> Adarsh Apparment, Ahmedabad-388026 </p>
+                <ul class="list-inline shareaddalink">
+                    <li class=""><b>Share this Adda:</b></li>
+                    <li class="link"><a href="#"><i class="fa fa-link"></i>&nbsp;Copy Link</a></li>
+                    <li class="facebook"><a href="#"><i class="fa fa-facebook-square"></i>&nbsp;Facebook</a></li>
+                    <li class="google"><a href="#"><i class="fa fa-google-plus-square"></i>&nbsp;Google+</a></li>
+                    <li class="twitter"><a href="#"><i class="fa fa-twitter-square"></i>&nbsp;Twitter</a></li>
+                </ul>
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-raised btn-info btn-block btn-joinadda" data-toggle="modal" data-target="#joinmodal">Join Now</button>
+            <div class="col-md-2 col-sm-3 col-xs-12">
+                <button class="btn btn-raised btn-info btn-block btn-joinadda"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Join Now</button>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <hr/>
-                <h3>About <?php echo $appartment_info->appartment_name; ?></h3>
-                <p><?php echo $appartment_info->info; ?></p>
+                <h3 class="blue">About Adda</h3>
+                <p>If you are an Owner, or Tenant residing in zerogravity, then join this group.</p>
+                <p>In ADDA you can hangout with all fellow residents and owners of zerogravity. You get to know each other, have conversations, form groups, share photos, manage your apartment and stay connected to your management committee or resident welfare association. Together we grow as a community. Join us and be a part of our smart and vibrant community!</p>
+                <p>Also, do not forget to download the ADDA app for Android or iOS to stay connected to your apartment and neighbours from anywhere!</p>
             </div>
         </div>
         <div class="row">
             <br/>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-9 col-xs-12">
                 <div class="addaspec">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -77,11 +82,11 @@
             </div>
         </div>
         <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Adda Feature</h3>
+        <div class="row addafeature">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h3 class="blue">Adda Feature</h3>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-xs-12">
                 <h4>Connect and Collaborate with neighbours</h4>
                 <ul class="list">
                     <li><i class="fa fa-check"></i>&nbsp;Conversations</li>
@@ -90,7 +95,7 @@
                     <li><i class="fa fa-check"></i>&nbsp;Post Activities, Events and Notices</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-4 col-xs-12">
                 <h4>Manage your Apartment</h4>
                 <ul class="list">
                     <li><i class="fa fa-check"></i>&nbsp;Pay Maintanance Bills</li>
@@ -98,7 +103,7 @@
                     <li><i class="fa fa-check"></i>&nbsp;Manage Visitors</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-4 col-xs-12">
                 <h4>Stay connected to your society management</h4>
                 <ul class="list">
                     <li><i class="fa fa-check"></i>&nbsp;Get Notifications and Updates</li>
