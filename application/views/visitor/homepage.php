@@ -21,7 +21,7 @@
                 </ul>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-12">
-                <button class="btn btn-raised btn-info btn-block btn-joinadda"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Join Now</button>
+                <button class="btn btn-raised btn-info btn-block btn-joinadda" ><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Join Now</button>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <hr/>
