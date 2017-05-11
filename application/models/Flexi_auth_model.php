@@ -164,7 +164,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model {
         // Start SQL transaction.
         $this->db->trans_start();
 
-        // Main user account table.	
+        // Main user account table.
         $sql_insert = array(
             $this->auth->tbl_col_user_account['group_id'] => $group_id,
             $this->auth->tbl_col_user_account['email'] => $email,
@@ -204,7 +204,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model {
 //            }
 //            $user_id = $conn->insert_id;
 //        }
-        
+
         $this->insert_custom_user_data($user_id, $custom_data);
         ###+++++++++++++++++++++++++++++++++###
         // Complete SQL transaction.
