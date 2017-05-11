@@ -54,7 +54,11 @@
                             <li><a class="hvr-underline-from-center" href="<?php echo base_url(); ?>home/blog">Blog</a></li>
                             <li><a class="hvr-underline-from-center" href="<?php echo base_url(); ?>home/career">Career</a></li>
                             <li><a class="hvr-underline-from-center" href="<?php echo base_url(); ?>home/contact">Contact</a></li>
-                            <li><a data-toggle="modal" data-target="#signinmodal" class="btn btn-primary btn-raised">Sign In</a></li>
+                            <?php if ($userinfo['uacc_id'] != "" && $this->flexi_auth->is_logged_in()) { ?>
+                                <li><a href="<?php echo base_url(); ?>home/logout" class="btn btn-primary btn-raised">Logout</a></li>
+                            <?php } else { ?>
+                                <li><a data-toggle="modal" data-target="#signinmodal" class="btn btn-primary btn-raised">Sign In</a></li>
+                            <?php } ?>
                             <!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                               <ul class="dropdown-menu">
@@ -235,10 +239,10 @@
                                 <div class="col-md-6">
                                     <div class="m-t-15">
                                         <label class="radio-inline">
-                                            <input type="radio" name="user_type123" id="user_type_owner" value="1"> Owner
+                                            <input type="radio" name="resident_type" id="user_type_owner" value="1"> Owner
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="user_type123" id="user_type_tenant" value="2"> Tenant
+                                            <input type="radio" name="resident_type" id="user_type_tenant" value="2"> Tenant
                                         </label>
                                     </div>
                                 </div>
@@ -303,7 +307,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="user_type" id="user_type" value="2">
-                                <input type="hidden" name="appartment_id" id="appartment_id" value="<?php echo $_GET['appartment_id']?>">
+                                <input type="hidden" name="appartment_id" id="appartment_id" value="<?php echo $_GET['appartment_id'] ?>">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-raised btn-info btn-block" name="signup_user" id="signup_user">Sign Up <i class="fa fa-send"></i></button>

@@ -191,21 +191,20 @@ class Flexi_auth_model extends Flexi_auth_lite_model {
             }
         }
 
-        // Create main user account.      
-        if (!$this->flexi_auth->is_logged_in()) {
-            $this->db->insert($this->auth->tbl_user_account, $sql_insert);
-            $user_id = $this->db->insert_id();
-        } else {
-            $conn = new mysqli($this->db->hostname, $this->db->username, $this->db->password, $this->db->database);
-            if ($conn->connect_error) {
-                $this->session->set_flashdata('message', $conn->connect_error);
-            } else {
-                $this->db->insert('user_accounts', $sql_insert);
-                $conn->query($this->db->last_query());
-            }
-            $user_id = $conn->insert_id;
-        }
-
+        //if (!$this->flexi_auth->is_logged_in()) {
+        $this->db->insert($this->auth->tbl_user_account, $sql_insert);
+        $user_id = $this->db->insert_id();
+//        } else {
+//            $conn = new mysqli($this->db->hostname, $this->db->username, $this->db->password, $this->db->database);
+//            if ($conn->connect_error) {
+//                $this->session->set_flashdata('message', $conn->connect_error);
+//            } else {
+//                $this->db->insert('user_accounts', $sql_insert);
+//                $conn->query($this->db->last_query());
+//            }
+//            $user_id = $conn->insert_id;
+//        }
+        
         $this->insert_custom_user_data($user_id, $custom_data);
         ###+++++++++++++++++++++++++++++++++###
         // Complete SQL transaction.

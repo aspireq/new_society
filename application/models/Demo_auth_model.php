@@ -105,7 +105,7 @@ class Demo_auth_model extends CI_Model {
                 'uadd_address_01' => $this->input->post('address'),
                 'uadd_post_code' => $this->input->post('pincode'),
                 'uadd_city' => $this->input->post('city'),
-                'user_type' => $this->input->post('user_type')
+                'user_type' => $this->input->post('resident_type')
             );
 
             if ($user_type == 2) {                
