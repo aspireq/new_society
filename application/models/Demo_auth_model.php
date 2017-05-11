@@ -83,20 +83,19 @@ class Demo_auth_model extends CI_Model {
     }
 
     function register_account() {
-        
+
         $this->load->library('form_validation');
         $validation_rules = array(
             array('field' => 'register_email_address', 'label' => 'Email Address', 'rules' => 'required|valid_email'),
             array('field' => 'register_username', 'label' => 'Username', 'rules' => 'required|min_length[4]|identity_available'),
             array('field' => 'passwordmain', 'label' => 'Password', 'rules' => 'required|validate_password'),
-            array('field' => 'inputPasswordConfirm', 'label' => 'Confirm Password', 'rules' => 'required|matches[passwordmain]'),              
+            array('field' => 'inputPasswordConfirm', 'label' => 'Confirm Password', 'rules' => 'required|matches[passwordmain]'),
         );
 
         $this->form_validation->set_rules($validation_rules);
 
         if ($this->form_validation->run()) {
-
-            $user_type = 3;
+            $user_type = $this->input->post('user_type');
             $email = $this->input->post('register_email_address');
             $username = $this->input->post('register_username');
             $password = $this->input->post('passwordmain');
@@ -106,12 +105,22 @@ class Demo_auth_model extends CI_Model {
                 'uadd_address_01' => $this->input->post('address'),
                 'uadd_post_code' => $this->input->post('pincode'),
                 'uadd_city' => $this->input->post('city'),
-                'user_type' => $this->input->post('user_type')
+                'user_type' => $this->input->post('resident_type')
             );
+
+            if ($user_type == 2) {                
+                $apparment_name = $this->db->query('select * from appartment_info where appartment_id = "'.$this->input->post('appartment_id').'"')->row();
+                $profile_data['apartmentname'] = $apparment_name->appartment_name;
+            }
             $instant_activate = FALSE;
             $response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, $user_type, $instant_activate);
+
             if ($response) {
-                $appartment_id = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+                if ($user_type == 3) {
+                    $appartment_id = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+                } else {
+                    $appartment_id = $this->input->post('appartment_id');
+                }
                 $this->db->update("user_accounts", array('appartment_id' => $appartment_id), array('uacc_id' => $response));
                 $email_data = array('identity' => $email, 'username' => $username);
                 $this->flexi_auth->send_email($email, 'Welcome', 'registration_welcome.tpl.php', $email_data);
