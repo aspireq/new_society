@@ -793,3 +793,34 @@ a.socialIcon:hover, .socialHoverClass {
     background: #3949AB !important;
     border-radius:0
 }
+.shareaddalink li a{
+    color:#6f6f6f
+}
+.shareaddalink li a:hover{
+    text-decoration:none    
+}
+.shareaddalink li.facebook a:hover{
+    color:#4867AA
+}
+.shareaddalink li.google a:hover{
+    color:#EA4335
+}
+.shareaddalink li.twitter a:hover{
+    color:#1DA1F2
+}
+.shareaddalink li.link a:hover{
+    color:#333
+}
+.addafeature .col-md-4{
+    border: 1px solid #ddd;
+    height: 166px;
+    border-radius: 3px;
+    width: 32%;
+    margin-left: 15px;
+}
+.addafeature ul li{
+    color:#6f6f6f
+}
+.blue{
+    color:#3949AB
+}
