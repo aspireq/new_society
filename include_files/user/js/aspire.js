@@ -194,5 +194,37 @@ $(function ()
             });
         }
     });
+    $('#join_user').validator().on('submit', function (e) {
+        if (e.isDefaultPrevented()) {
+            return false;
+        } else {
+            e.preventDefault();
+            var submit_url = $(this).attr('action');
+            $.ajax({
+                url: submit_url,
+                type: 'POST',
+                data: $("#join_user").serialize(),
+                dataType: 'json',
+                success: function (data)
+                {
+                    $('#register_message1').empty();
+                    $('#register_message1').html('');
+                    $('#register_message1').removeClass('alert alert-success alert-dismissable');
+                    $('#register_message1').removeClass('alert alert-danger alert-dismissable');
+                    if (data.login_status == true)
+                    {
+                        $('#register_message1').addClass('alert alert-success alert-dismissable');
+                        $('#register_message1').append('<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>');
+                        $('#register_message1').append(data.message);
+                        $('#join_user')[0].reset();
+                    } else {
+                        $('#register_message1').addClass('alert alert-danger alert-dismissable');
+                        $('#register_message1').append('<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>');
+                        $('#register_message1').append(data.message);
+                    }
+                }
+            });
+        }
+    });
 });
 
