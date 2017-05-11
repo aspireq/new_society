@@ -465,7 +465,7 @@ h6{
 	color: #fff
 }
 .registerlinkblock{
-	padding:150px 0;
+	padding:160px 0;
 	text-align: center;
 }
 .registerform .form-group{
@@ -825,6 +825,6 @@ a.socialIcon:hover, .socialHoverClass {
     color:#3949AB
 }
 
-.error_msg{
+.error_msg, .status_msg{
     color:#fff
 }

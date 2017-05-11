@@ -1,25 +1,4 @@
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Jignesh Bhaty 6-124</h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                 <div class="form-group">
-                     <input type="" name="" placeholder="First Name">
-                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>      
+         
 <header class="clearfix">
          <div class="logo"><img src="<?php echo base_url(); ?>include_files/admin/img/logo.png" alt="Logo"></div>
          <div class="pull-right">
