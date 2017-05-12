@@ -88,7 +88,7 @@ class Auth_admin extends CI_Controller {
         $this->data = $this->include_files();
         $this->load->view('admin/manage_users', $this->data);
     }
-
+    
     function profile_setup() {
         if ($this->input->post('add_images') == 'add_images') {
             $this->load->library('form_validation');
