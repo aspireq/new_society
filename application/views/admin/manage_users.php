@@ -4,7 +4,86 @@
         <?php echo $common; ?>
     </head>
     <body>
+         <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Jignesh Bhaty 6-124</h4>
+            </div>
+            <div class="modal-body">
+              	<div class="row">
+                    <div class="col-md-12">
+                        <!-- Nav tabs -->
+                        <div class="card">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#default" aria-controls="default" role="tab" data-toggle="tab">Default</a></li>
+                                <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab">Advanced</a></li>
+                            </ul>
 
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="default">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="floor">Floor</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Occupancy</label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Owner 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tenant 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Vacant 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Builder
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Water Inlets</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Flat Square Feet 1</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Flat Square Feet 2</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">BHK</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Bill-To Name</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="floor">Flat Specific Comment for Invoice</label>
+                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="advanced"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>  
         <?php echo $header; ?>
         <div class="container-fluid"> 
             <?php echo $sidebar; ?>
