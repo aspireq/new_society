@@ -39,6 +39,7 @@ class User extends CI_Controller {
     }
 
     function home() {
+        $this->load->library('form_validation');
         $type = "News";
         if (strpos($_SERVER['HTTP_REFERER'], 'auth_admin') || strpos($_SERVER['HTTP_REFERER'], 'home') || $this->uri->segment(3) != "") {
             $type = "Notice";
@@ -101,7 +102,6 @@ class User extends CI_Controller {
         $this->data["links"] = explode('&nbsp;', $str_links);
 
         if ($this->input->post('add_notice') == 'add_notice') {
-            $this->load->library('form_validation');
             $this->form_validation->set_rules('notice_email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('notice_subject', 'Subject', 'required');
             $this->form_validation->set_rules('notice_expiry_date', 'Expiry Date', 'required');
@@ -133,6 +133,46 @@ class User extends CI_Controller {
                 }
             } else {
                 $this->data['noticedata'] = $noticedata;
+                $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
+                $this->data['message_type'] = false;
+            }
+        } else if ($this->input->post('add_album') == 'add_album') {
+            $this->form_validation->set_rules('album_name', 'Album Name', 'required');
+            //$this->form_validation->set_rules('userFiles', 'Images', 'required');
+
+
+            if ($this->form_validation->run() == true) {
+                if (!empty($_FILES['userFiles']['name'])) {
+                    $filesCount = count($_FILES['userFiles']['name']);
+                    for ($i = 0; $i < $filesCount; $i++) {
+                        $_FILES['userFile']['name'] = $_FILES['userFiles']['name'][$i];
+                        $_FILES['userFile']['type'] = $_FILES['userFiles']['type'][$i];
+                        $_FILES['userFile']['tmp_name'] = $_FILES['userFiles']['tmp_name'][$i];
+                        $_FILES['userFile']['error'] = $_FILES['userFiles']['error'][$i];
+                        $_FILES['userFile']['size'] = $_FILES['userFiles']['size'][$i];
+
+                        $uploadPath = 'include_files/albums';
+                        $config['upload_path'] = $uploadPath;
+                        $config['allowed_types'] = 'gif|jpg|png';
+                        $config['encrypt_name'] = TRUE;
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('userFile')) {
+                            $fileData = $this->upload->data();
+                            $uploadData[$i]['user_id'] = $this->user_id;
+                            $uploadData[$i]['album_name'] = $this->input->post('album_name');
+                            $uploadData[$i]['image'] = $fileData['file_name'];
+                        }
+                    }
+                    if (!empty($uploadData)) {
+                        $insert = $this->db->insert_batch('albums', $uploadData);
+                    }
+                    $statusMsg = ($business_id || $edit_business_id || $insert) ? 'Album has been saved succesfully !' : 'Some problem occurred, please try again.';
+                    $this->data['message'] = $statusMsg;
+                    $this->data['message_type'] = ($business_id || $edit_business_id || $insert) ? true : false;
+                }
+            } else {
+                $this->data['albumdata'] = array('album_name' => $this->input->post('album_name'));
                 $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
                 $this->data['message_type'] = false;
             }

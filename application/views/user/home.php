@@ -30,7 +30,7 @@
                                 <ul class="nav nav-tabs">
                                     <li class="<?php echo ($type == "News") ? 'active' : ''; ?>"><a href="#newsfeed" data-toggle="tab" aria-expanded="false">News Feed</a></li>
                                     <li class="<?php echo ($type == "Groups") ? 'active' : ''; ?>"><a href="#tabOne" data-toggle="tab" aria-expanded="false">Groups</a></li>
-                                    <li class=""><a href="#tabTwo" data-toggle="tab" aria-expanded="false">Photos</a></li>
+                                    <li class="<?php echo ($type == "Photos") ? 'active' : ''; ?>"><a href="#tabTwo" data-toggle="tab" aria-expanded="false">Photos</a></li>
                                     <li class=""><a href="#tabThree" data-toggle="tab" aria-expanded="false">Polls</a></li>
                                     <li class="<?php echo ($type == "Notice") ? 'active' : ''; ?>"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Notices</a></li>
                                 </ul>
@@ -197,18 +197,21 @@
                                         </div>
                                     </div>
                                     <!-- tab one -->
-                                    <div class="tab-pane" id="tabTwo">
+                                    <div class="tab-pane <?php echo ($type == "Photos") ? 'active' : ''; ?>" id="tabTwo">
                                         <div class="createalbum">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <button class="btn btn-info" data-toggle="collapse" data-target="#createalbum">Create Album</button>
-                                                    <div class="collapse" id="createalbum">
-                                                        <br/>
-                                                        <input type="text" name="" placeholder="Album Name" class="form-control">
-                                                        <input id="input-44" name="input44[]" type="file" multiple class="file-loading">
-                                                        <div id="errorBlock" class="help-block"></div>
-                                                        <button class="btn btn-info">Save</button>
-                                                    </div>
+                                                    <form method="post" enctype="multipart/form-data">
+                                                        <div class="collapse" id="createalbum">
+                                                            <br/>
+                                                            <input type="text" name="album_name" id="album_name" placeholder="Album Name" class="form-control" value="<?php echo (!empty($albumdata) && $albumdata['album_name'] != "") ? $albumdata['album_name'] : ''; ?>" >
+                                                            <input type="text" name="page_type" id="page_type" value="Photos">
+                                                            <input id="input-44" name="userFiles[]" type="file" multiple class="file-loading">
+                                                            <div id="errorBlock" class="help-block"></div>
+                                                            <button class="btn btn-info" type="submit" name="add_album" id="add_album" value="add_album">Save</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -223,43 +226,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="thumbnail">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="...">
-                                                        <div class="caption">
-                                                            <p><span>Album 1 (8 Images)</span><span class="pull-right"><i class="icon-watch_later"></i>&nbsp;18 April 2017</span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="thumbnail">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="...">
-                                                        <div class="caption">
-                                                            <p><span>Album 1 (8 Images)</span><span class="pull-right"><i class="icon-watch_later"></i>&nbsp;18 April 2017</span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="albumimages hidden">
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4>Album Name 
-                                                        <button class="btn btn-warning btn-back pull-right">Back</button>
-                                                    </h4>
-                                                    <br/>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
+                                                <div id="album_images">
+                                                    <div class="col-md-12">
+                                                        <h4>Album Name 
+                                                            <button class="btn btn-warning btn-back pull-right">Back</button>
+                                                        </h4>
+                                                        <br/>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -344,7 +333,7 @@
                                     </div>
                                     <!-- tab three -->
                                     <div class="tab-pane <?php echo ($type == "Notice") ? 'active' : ''; ?>" id="tabFour">
-                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'      ?>">
+                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'         ?>">
                                             <form class="form-horizontal col-sm-8" method="post">
                                                 <div class="form-group">
                                                     <div class="radio col-sm-12">
@@ -504,7 +493,6 @@
                 <?php echo $footer; ?>
             </div>
         </div>
-
         <div class="modal fade" id="delete_notice" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
@@ -527,7 +515,6 @@
                 </form>
             </div>
         </div>
-
         <script src="<?php echo base_url(); ?>include_files/admin/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/jquery-ui.min.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/scrollup.min.js"></script>
