@@ -9,6 +9,7 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
+        $this->load->library('pagination');
         $this->load->helper('url');
         $this->load->model('Admin_model');
         $this->load->helper('url');
@@ -38,17 +39,105 @@ class User extends CI_Controller {
     }
 
     function home() {
-        $notice = false;
-        if ($_GET['name']) {
-            $notice = true;
+        $type = "News";
+        if (strpos($_SERVER['HTTP_REFERER'], 'auth_admin') || strpos($_SERVER['HTTP_REFERER'], 'home') || $this->uri->segment(3) != "") {
+            $type = "Notice";
         }
+        if ($this->input->post('page_type')) {
+            $type = $this->input->post('page_type');
+        }
+
+        if ($this->input->post('notice_id')) {
+            $result = $this->Common_model->delete_where('notices', array('id' => $this->input->post('notice_id')));
+            if ($result) {
+                $this->data['message'] = "Notice deleted successfully !";
+                $this->data['message_type'] = true;
+            } else {
+                $this->data['message'] = "Try again later...";
+                $this->data['message_type'] = false;
+            }
+        }
+        // Notice Table Data
+        $config = array();
+        $config["base_url"] = base_url() . "user/home";
+        $config["per_page"] = 5;
+        $config['use_page_numbers'] = FALSE;
+
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '&nbsp;<li class="active"><a>';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_link'] = 'Previous';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $search_location = "";
+        $search_amount = "";
+        $search_key = "";
+        if ($this->input->post()) {
+            $this->data['search_location'] = $search_location = $this->input->post('search_location');
+            $this->data['search_amount'] = $search_amount = $this->input->post('search_amount');
+            $this->data['search_key'] = $search_key = $this->input->post('search_key');
+        }
+        $total_row = $this->Common_model->fetch_notices('', '');
+        $config["total_rows"] = $total_row['counts'];
+        $config['num_links'] = $total_row['counts'];
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->data["results"] = $this->Common_model->fetch_notices($config["per_page"], $page);
+
+        $this->pagination->initialize($config);
+        $str_links = $this->pagination->create_links();
+        $this->data["links"] = explode('&nbsp;', $str_links);
+
         if ($this->input->post('add_notice') == 'add_notice') {
-            print_r(htmlentities($this->input->post('detailed_description')));
-            echo "<pre>";
-            print_r($this->input->post());
-            die();
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('notice_email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('notice_subject', 'Subject', 'required');
+            $this->form_validation->set_rules('notice_expiry_date', 'Expiry Date', 'required');
+            $this->form_validation->set_rules('notice_description', 'Brief Description', 'required');
+            $noticedata = array(
+                "user_id" => $this->user_id,
+                "type" => $this->input->post('notice_type'),
+                "from_email" => $this->input->post('notice_email'),
+                "subject" => $this->input->post('notice_subject'),
+                "expiry_date" => $this->input->post('notice_expiry_date'),
+                "description" => $this->input->post('notice_description'),
+                "recepients" => $this->input->post('recepients'),
+                "detailed_description" => $this->input->post('final_detailed_descrption'));
+            if ($this->form_validation->run() == true) {
+                if ($this->input->post('edit_id')) {
+                    $result = $this->Common_model->select_update('notices', $noticedata, array('id' => $this->input->post('edit_id')));
+                } else {
+                    echo "<pre>";
+                    print_r($noticedata);
+                    die();
+                    $result = $this->Common_model->insert('notices', $noticedata);
+                }
+                if ($result) {
+                    $this->data['message'] = "Information saved successfully";
+                    $this->data['message_type'] = true;
+                } else {
+                    $this->data['message'] = "Try again later...";
+                    $this->data['message_type'] = false;
+                }
+            } else {
+                $this->data['noticedata'] = $noticedata;
+                $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
+                $this->data['message_type'] = false;
+            }
         }
-        $this->data['notice'] = $notice;
+        $this->data['type'] = $type;
         $this->data = $this->include_files();
         $this->load->view('user/home', $this->data);
     }
