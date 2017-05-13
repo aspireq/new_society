@@ -20,16 +20,22 @@
                 <div class="main-container">
                     <div class="row gutter">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <?php if ($message != "") { ?>
+                                <div class="alert <?php echo ($message_type == true) ? 'alert-success' : 'alert-danger'; ?>">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <?php echo $message; ?>
+                                </div>
+                            <?php } ?>
                             <div class="tabbable tabs-left clearfix">
                                 <ul class="nav nav-tabs">
-                                    <li class=""><a href="#newsfeed" data-toggle="tab" aria-expanded="false">News Feed</a></li>
-                                    <li class=""><a href="#tabOne" data-toggle="tab" aria-expanded="false">Groups</a></li>
-                                    <li class=""><a href="#tabTwo" data-toggle="tab" aria-expanded="true">Photos</a></li>
+                                    <li class="<?php echo ($type == "News") ? 'active' : ''; ?>"><a href="#newsfeed" data-toggle="tab" aria-expanded="false">News Feed</a></li>
+                                    <li class="<?php echo ($type == "Groups") ? 'active' : ''; ?>"><a href="#tabOne" data-toggle="tab" aria-expanded="false">Groups</a></li>
+                                    <li class=""><a href="#tabTwo" data-toggle="tab" aria-expanded="false">Photos</a></li>
                                     <li class=""><a href="#tabThree" data-toggle="tab" aria-expanded="false">Polls</a></li>
-                                    <li class="<?php echo ($notice == true) ? 'active' : '' ?>"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Notices</a></li>
+                                    <li class="<?php echo ($type == "Notice") ? 'active' : ''; ?>"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Notices</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane" id="newsfeed">
+                                    <div class="tab-pane <?php echo ($type == "News") ? 'active' : ''; ?>" id="newsfeed">
                                         <div class="row">
                                             <div class="col-md-10 col-md-offset-1 feed-card">
                                                 <div class="row">
@@ -109,7 +115,7 @@
                                                         <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive img-thumbnail">
                                                     </div>
                                                     <div class="col-md-3">  
-                                                        <img src="img/not-found.jpg" alt="" class="img-responsive img-thumbnail">
+                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive img-thumbnail">
                                                     </div>
                                                     <div class="col-md-3">  
                                                         <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive img-thumbnail">
@@ -158,7 +164,7 @@
                                         </div>
                                     </div>   
 
-                                    <div class="tab-pane" id="tabOne">
+                                    <div class="tab-pane <?php echo ($type == "Groups") ? 'active' : ''; ?>" id="tabOne">
                                         <a class="btn btn-info">Discover And Join Group</a>
                                         <a class="btn btn-info" data-toggle="collapse" href="#creategroup" aria-expanded="false" aria-controls="creategroup">Create a Group</a>
                                         <div class="collapse" id="creategroup">
@@ -337,8 +343,8 @@
                                         </div>
                                     </div>
                                     <!-- tab three -->
-                                    <div class="tab-pane <?php echo ($notice == true) ? 'active' : '' ?>" id="tabFour">
-                                        <div class="createnotice row hidden">
+                                    <div class="tab-pane <?php echo ($type == "Notice") ? 'active' : ''; ?>" id="tabFour">
+                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'      ?>">
                                             <form class="form-horizontal col-sm-8" method="post">
                                                 <div class="form-group">
                                                     <div class="radio col-sm-12">
@@ -346,7 +352,7 @@
                                                             <input type="radio" name="notice_type" value="Administration">&nbsp;&nbsp;Administration
                                                         </label>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="notice_type" value="General">&nbsp;&nbsp;General
+                                                            <input type="radio" name="notice_type" value="General" checked>&nbsp;&nbsp;General
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="notice_type" value="Buy/Rent/Sell">&nbsp;&nbsp;Buy/Rent/Sell
@@ -354,57 +360,67 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="control-label col-sm-2">Subject</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" name="notice_subject" id="notice_subject" class="form-control" value="<?php echo (!empty($noticedata) && $noticedata['subject'] != "") ? $noticedata['subject'] : ''; ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="control-label col-sm-2">From E-mail</label>
                                                     <div class="col-md-10">
-                                                        <input type="" name="" placeholder="mehul@aspireq.com" class="form-control">
+                                                        <input type="text" name="notice_email" id="notice_email" placeholder="email address" class="form-control" value="<?php echo $userinfo['uacc_email']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Select Expiry Date</label>
                                                     <div class="col-md-10">
-                                                        <input type="" name="" placeholder="dd-mm-yyyy" class="form-control">
+                                                        <input type="text" name="notice_expiry_date" id="notice_expiry_date"  placeholder="yyyy-mm-dd" class="form-control" value="<?php echo (!empty($noticedata) && $noticedata['expiry_date'] != "") ? $noticedata['expiry_date'] : ''; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Brief Description</label>
                                                     <div class="col-md-10">
-                                                        <textarea class="form-control" name="notice_description"></textarea>
+                                                        <textarea class="form-control" name="notice_description"><?php echo (!empty($noticedata) && $noticedata['description'] != "") ? $noticedata['description'] : ''; ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Notice Recepients</label>
                                                     <div class="col-md-10">
                                                         <select class="form-control" name="recepients" id="recepients">
-                                                            <option value="All Users">All Users</option>
-                                                            <option value="All Owners">All Owners</option>
-                                                            <option value="Only Primary Contacts">Only Primary Contacts</option>
+                                                            <option value="All Users" <?php echo (!empty($noticedata) && $noticedata['recepients'] == "All Users") ? 'selected' : ''; ?>>All Users</option>
+                                                            <option value="All Owners" <?php echo (!empty($noticedata) && $noticedata['recepients'] == "All Owners") ? 'selected' : ''; ?>>All Owners</option>
+                                                            <option value="Only Primary Contacts" <?php echo (!empty($noticedata) && $noticedata['recepients'] == "Only Primary Contacts") ? 'selected' : ''; ?>>Only Primary Contacts</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2">Detailed Description</label>
                                                     <div class="col-md-10">
-                                                        <textarea id="txtEditor" name="detailed_description"></textarea>
+                                                        <textarea id="txtEditor" name="detailed_description"><?php echo (!empty($noticedata) && $noticedata['final_detailed_descrption'] != "") ? $noticedata['final_detailed_descrption'] : ''; ?></textarea>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="final_detailed_descrption" id="final_detailed_descrption">
+                                                <input type="hidden" name="page_type" id="page_type" value="Notice">
                                                 <div class="form-group col-sm-12">
                                                     <button class="btn btn-info" name="add_notice" id="add_notice" value="add_notice">Post</button>
-                                                    <button class="btn btn-default btn-cancel">Cancel</button>
+                                                    <button class="btn btn-default btn-cancel" type="button" onclick="window.location.href = '<?php echo base_url(); ?>user/home'">Cancel</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="noticelist row">
+                                            <?php //if ($notice == false) { ?>
                                             <div class="col-md-4">
-                                                <button class="btn btn-info btn-createnotice">Create Notice</button>
-                                            </div>
-                                            <form class="form-inline col-md-8">
+                                                <button class="btn btn-info btn-createnotice" type="button" name="btn_add_notice" id="btn_add_notice">Create Notice</button>
+                                            </div>                                            
+                                            <form class="form-inline col-md-8" method="post">
                                                 <div class="form-group pull-right">
                                                     <div class="input-group">
                                                         <div class="col-sm-9">
                                                             <select class="form-control">
                                                                 <option>All Notice</option>
-                                                                <option>Admin Notices</option>
-                                                                <option>General Notices</option>
+                                                                <option value="Administration">Admin Notices</option>
+                                                                <option value="General">General Notices</option>
+                                                                <option value="Buy/Rent/Sell">Buy/Rent/Sell</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -415,7 +431,7 @@
                                                         <label class="input-group-addon" for="search"><i class="icon-search4"></i></label>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form>                                            
                                             <div class="col-md-12">
                                                 <br/>
                                                 <div class="table-responsive">
@@ -428,36 +444,56 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    1
-                                                                </td>
-                                                                <td class="description">
-                                                                    <h4>Notice title here</h4>
-                                                                    <p class="ellipsis">Notice Description Here...</p>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="btn btn-warning"><i class="icon-mode_edit"></i></button>
-                                                                    <button class="btn btn-danger"><i class="icon-cup"></i></button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    2
-                                                                </td>
-                                                                <td class="description">
-                                                                    <h4>Notice title here</h4>
-                                                                    <p class="ellipsis">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="btn btn-warning"><i class="icon-mode_edit"></i></button>
-                                                                    <button class="btn btn-danger"><i class="icon-cup"></i></button>
-                                                                </td>
-                                                            </tr>
+                                                            <?php if (!empty($results)) { ?>
+                                                                <?php
+                                                                if ($this->uri->segment(3) != "") {
+                                                                    $record_counter = $this->uri->segment(3) + 1;
+                                                                } else {
+                                                                    $record_counter = 1;
+                                                                }
+                                                                array_pop($results);
+                                                                foreach ($results as $data) {
+                                                                    ?>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <?php echo $record_counter; ?>
+                                                                        </td>
+                                                                        <td class="description">
+                                                                            <h4><?php echo $data->subject; ?></h4>
+                                                                            <p class="ellipsis"><?php echo $data->description; ?></p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-warning"><i class="icon-mode_edit"></i></button>
+                                                                            <button class="btn btn-danger" type="button" onclick="delete_notice('<?php echo $data->id; ?>');"><i class="icon-cup"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php
+                                                                    $record_counter++;
+                                                                }
+                                                                ?>
+                                                            <?php } else { ?>
+                                                                <tr>
+                                                                    <td colspan="3" class="text-center">
+                                                                        No Notices available
+                                                                    </td>
+                                                                </tr>
+                                                            <?php } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <nav aria-label="Page navigation">
+                                                        <ul class="pagination pull-right">                                        
+                                                            <?php
+                                                            foreach ($links as $key => $link) {
+                                                                echo "<li>" . $link . "</li>";
+                                                            }
+                                                            ?>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
                                             </div>
+                                            <?php //} ?>
                                         </div>
                                     </div>
                                 </div>
@@ -468,6 +504,30 @@
                 <?php echo $footer; ?>
             </div>
         </div>
+
+        <div class="modal fade" id="delete_notice" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <form method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Delete Notice</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="confirmation_text">Are you sure want to delete this notice ?</p>
+                        </div>
+                        <input type="hidden" name="page_type" id="page_type" value="Notice">
+                        <input type="hidden" name="notice_id" id="notice_id">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">Delete</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <script src="<?php echo base_url(); ?>include_files/admin/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/jquery-ui.min.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/scrollup.min.js"></script>
@@ -494,21 +554,37 @@
         <script src="<?php echo base_url(); ?>include_files/admin/js/datatables/custom-datatables.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/common.js"></script>
         <script src="<?php echo base_url(); ?>include_files/admin/js/wysiwyg-editor/editor.js"></script>
-        <script type="text/javascript">$(function () {
-                $("#txtEditor").Editor();
-            });
+        <script src="<?php echo base_url(); ?>include_files/admin/js/bootstrap-datepicker.min.js"></script>
+        <script src="<?php echo base_url(); ?>include_files/admin/js/bootstrap-timepicker.min.js"></script>
+        <script type="text/javascript">
+                                                                                $(function () {
+                                                                                    $("#txtEditor").Editor();
+                                                                                });
         </script>
-
         <script>
             $(document).ready(function () {
                 $("#input-44").fileinput({
                     uploadUrl: '/file-upload-batch/2',
                     maxFilePreviewSize: 800
                 });
+                $('#notice_expiry_date').datepicker({
+                    autoclose: true,
+                    format: 'yyyy-mm-dd',
+                    todayHighlight: true
+                });
             });
+            function delete_notice(notice_id) {
+                $('#notice_id').val();
+                $('#delete_notice').modal('show');
+                $('#notice_id').val(notice_id);
+            }
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
+                $('#add_notice').click(function () {
+                    var textareaval = $('.Editor-editor').html();
+                    $('#final_detailed_descrption').val(textareaval);
+                });
                 $(".btn-cancel").click(function (e) {
                     e.preventDefault();
                     $(".noticelist").removeClass('hidden');

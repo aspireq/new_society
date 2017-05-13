@@ -39,7 +39,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a href="<?php echo base_url();?>user/home?name=notice" class="block-60 orange-bg">
+                            <a href="<?php echo base_url();?>user/home" class="block-60 orange-bg">
                                 <h1>Post Notice</h1>
                                 <h5>Notice in your Adda</h5>
                             </a>
