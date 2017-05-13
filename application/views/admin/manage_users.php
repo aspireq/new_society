@@ -3,12 +3,12 @@
     <?php echo $common; ?>
     <body>
         <!-- Modal -->
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Mehul [&nbsp;Block : 1-1&nbsp;]</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mehul [&nbsp;Block : 1-1&nbsp;]</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -18,7 +18,7 @@
                                         <li role="presentation" class="active"><a href="#default" aria-controls="default" role="tab" data-toggle="tab">Default</a></li>
                                         <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab">Advanced</a></li>
                                     </ul>
-        
+
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="default">
                                             <form class="row">
@@ -96,22 +96,89 @@
                                                     <label for="floor">RFID#</label>
                                                     <input type="text" class="form-control" id="floor" placeholder="0.00">
                                                 </div>
-                                                      
+                                                <h4 class="blue">Family Information for 1 2</h4>      
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Member Name</th>
+                                                                <th>DOB (dd/mm/yyyy)</th>
+                                                                <th>Member Badge No</th>
+                                                                <th>Notes</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="date" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="floor" placeholder="">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="form-group pull-right">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-info">Save changes</button>
+                                                </div>
                                             </form>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="advanced"></div>
+                                        <div role="tabpanel" class="tab-pane" id="advanced">
+                                            <h5>Advanced Fields </h5>
+                                            <p>Note : More Fields can be configured in Move In/Out Tracker ( Available in Premium Package )</p>
+                                            <h5>Flat Details for 1 2</h5>
+                                            <button class="btn btn-info">Update</button>
+                                            <hr class="gap-20"/>
+                                            <h5>Move In Check List </h5>
+                                            <button class="btn btn-info">Save Changes</button>
+                                            <p class="gap-20">Once all the checkboxes have been checked, the user will get automatically approved.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
                 </div>
-              </div>  
+            </div>
+        </div>  
         <?php echo $header; ?>
         <div class="container-fluid"> 
             <?php echo $sidebar; ?>
@@ -143,8 +210,9 @@
                                     <li class="active"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Approved User</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane" id="tabOne">                                        
-                                        <form method="post" id="make_deposit" role="form" name="make_deposit">
+                                    <div class="tab-pane" id="tabOne">
+                                        <div class="row">
+                                            <form method="post" id="make_deposit" role="form" name="make_deposit">
                                             <div class="table-responsive">
                                                 <table id="" class="table table-bordered table-condensed no-margin">
                                                     <thead>
@@ -156,7 +224,7 @@
                                                             <th>Password</th>
                                                             <th>Phone/Mobile</th>
                                                             <th>Intercom</th>
-                                                            <th>Resident is</th>
+                                                            <th>Resident</th>
                                                             <th>Email Address</th>
                                                         </tr>
                                                     </thead>                                       
@@ -224,6 +292,7 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        </div>    
                                         <hr/>
                                         <div class="row">
                                             <p class="col-md-12"><br/>Your ADDA has the following Blocks : 6,21,22,23,24,25,26,27,28,29,30,gfg,gf,ggfg,gfg,1,2,3,4,5 </p>
@@ -350,55 +419,55 @@
                                                         $i = 1;
                                                         foreach ($users as $user) {
                                                             ?>
-                                                        <tr>
-                                                            <td colspan="8"><input type="hidden" name="user_ids[]" value="<?php echo $user->uacc_id; ?>"></td>
-                                                        </tr>
-                                                       <tr>
-                                                            <td><?php echo $i; ?></td>
-                                                            <td><a href="#myModal" data-toggle="modal"><?php echo $user->uacc_username; ?> 6-124</a></td>
-                                                            <td>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox" name="committee_member[]" id="committee_member-<?php echo $user->uacc_id; ?>" value="1" <?php echo ($user->is_commitee_member == 1) ? 'checked' : ''; ?>>
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="designation[]" id="designation<?php echo $user->uacc_id; ?>" placeholder="" class="form-control" value="<?php echo ($user->designation != "") ? $user->designation : ''; ?>">
-                                                            </td>
-                                                            <td>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox" name="manage_users[]" id="manage_users-<?php echo $user->uacc_id; ?>" value="1" <?php echo (in_array('Manage Users', $user->permission)) ? 'checked' : ''; ?>>
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox">
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox">
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox">
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                        </tr>    
-                                                        <?php
-                                                        $i++;
-                                                    }
-                                                    ?>
+                                                            <tr>
+                                                                <td colspan="8"><input type="hidden" name="user_ids[]" value="<?php echo $user->uacc_id; ?>"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><?php echo $i; ?></td>
+                                                                <td><a href="#myModal" data-toggle="modal"><?php echo $user->uacc_username; ?> 6-124</a></td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox" name="committee_member[]" id="committee_member-<?php echo $user->uacc_id; ?>" value="1" <?php echo ($user->is_commitee_member == 1) ? 'checked' : ''; ?>>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="designation[]" id="designation<?php echo $user->uacc_id; ?>" placeholder="" class="form-control" value="<?php echo ($user->designation != "") ? $user->designation : ''; ?>">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox" name="manage_users[]" id="manage_users-<?php echo $user->uacc_id; ?>" value="1" <?php echo (in_array('Manage Users', $user->permission)) ? 'checked' : ''; ?>>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox">
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox">
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox">
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>    
+                                                            <?php
+                                                            $i++;
+                                                        }
+                                                        ?>
                                                     </tbody>
                                                 </table>
                                                 <button class="btn btn-info" name="add_permission" id="add_permission" value="add_permission" type="submit">Save</button>
@@ -667,7 +736,7 @@
                                                 <li><a href="">3 (5)</a></li>
                                                 <li><a href="">All Blocks</a></li>
                                             </ul>
-                                            <hr/>
+                                            <hr class="gap-30"/>
                                             <div class="table-responsive">
                                                 <table id="example" class="table table-bordered no-margin display compact" width="100%" cellspacing="0">
                                                     <thead>
@@ -952,9 +1021,9 @@
             }
         </script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#example').DataTable();
-            } );
+            });
         </script>
     </body>
 </html>

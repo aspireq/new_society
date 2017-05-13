@@ -202,7 +202,7 @@ pre {
 }
 @-moz-document url-prefix() {
     .form-control {
-        padding: 6px 12px 10px
+        padding: 4px 8px
     }
 }
 .form-control-width {
