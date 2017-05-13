@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>include_files/admin/plugin/imageupload/css/fileinput.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>include_files/admin/plugin/imageupload/themes/explorer/theme.css" media="all"/>
 
+     <link href="<?php echo base_url(); ?>include_files/admin/css/datatables/dataTables.bs.min.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>include_files/admin/css/datatables/autoFill.bs.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>

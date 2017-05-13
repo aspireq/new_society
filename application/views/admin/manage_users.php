@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <?php echo $common; ?>
-    </head>
+    <?php echo $common; ?>
     <body>
-         <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Jignesh Bhaty 6-124</h4>
-            </div>
-            <div class="modal-body">
-              	<div class="row">
-                    <div class="col-md-12">
-                        <!-- Nav tabs -->
-                        <div class="card">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#default" aria-controls="default" role="tab" data-toggle="tab">Default</a></li>
-                                <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab">Advanced</a></li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="default">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="floor">Floor</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="">
+        <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Mehul [&nbsp;Block : 1-1&nbsp;]</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#default" aria-controls="default" role="tab" data-toggle="tab">Default</a></li>
+                                        <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab">Advanced</a></li>
+                                    </ul>
+        
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="default">
+                                            <form class="row">
+                                                <h4 class="blue">Flat Information</h4>
+                                                <div class="form-group col-md-12">
+                                                    <label for="floor">Occupancy</label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Owner 
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tenant 
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Vacant 
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Builder
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Floor</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Water Inlets</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Flat Square Feet 1</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Flat Square Feet 2</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">BHK</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Bill-To Name</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="floor">Flat Specific Comment for Invoice</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <h4 class="blue">Vehicle Information</h4>
+                                                <div class="form-group col-md-12">
+                                                    <label for="floor">Vehicle Type :</label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 2 Wheeler    
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 4 Wheeler 
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label for="floor">Slot No.</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label for="floor">Number</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label for="floor">Sticker No.</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">Make/Model</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="floor">RFID#</label>
+                                                    <input type="text" class="form-control" id="floor" placeholder="0.00">
+                                                </div>
+                                                      
+                                            </form>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="floor">Occupancy</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Owner 
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tenant 
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Vacant 
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Builder
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">Water Inlets</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">Flat Square Feet 1</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">Flat Square Feet 2</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">BHK</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">Bill-To Name</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="floor">Flat Specific Comment for Invoice</label>
-                                            <input type="text" class="form-control" id="floor" placeholder="0.00">
-                                        </div>
-                                    </form>
+                                        <div role="tabpanel" class="tab-pane" id="advanced"></div>
+                                    </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="advanced"></div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>  
+              </div>  
         <?php echo $header; ?>
         <div class="container-fluid"> 
             <?php echo $sidebar; ?>
@@ -109,12 +137,13 @@
                                     </div>
                                 <?php } ?>
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tabOne" data-toggle="tab" aria-expanded="false">Add User</a></li>
+                                    <li class=""><a href="#tabOne" data-toggle="tab" aria-expanded="false">Add User</a></li>
                                     <li class=""><a href="#tabTwo" data-toggle="tab" aria-expanded="true">Access Control</a></li>
                                     <li class=""><a href="#tabThree" data-toggle="tab" aria-expanded="false">Broadcast</a></li>
+                                    <li class="active"><a href="#tabFour" data-toggle="tab" aria-expanded="false">Approved User</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="tabOne">                                        
+                                    <div class="tab-pane" id="tabOne">                                        
                                         <form method="post" id="make_deposit" role="form" name="make_deposit">
                                             <div class="table-responsive">
                                                 <table id="" class="table table-bordered table-condensed no-margin">
@@ -321,8 +350,10 @@
                                                         $i = 1;
                                                         foreach ($users as $user) {
                                                             ?>
-                                                        <input type="hidden" name="user_ids[]" value="<?php echo $user->uacc_id; ?>">
                                                         <tr>
+                                                            <td colspan="8"><input type="hidden" name="user_ids[]" value="<?php echo $user->uacc_id; ?>"></td>
+                                                        </tr>
+                                                       <tr>
                                                             <td><?php echo $i; ?></td>
                                                             <td><a href="#myModal" data-toggle="modal"><?php echo $user->uacc_username; ?> 6-124</a></td>
                                                             <td>
@@ -333,12 +364,12 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="designation[]" id="designation<?php echo $user->uacc_id; ?>" placeholder="" class="form-control" value="<?php echo ($user->designation != "") ? $user->designation : '';?>">
+                                                                <input type="text" name="designation[]" id="designation<?php echo $user->uacc_id; ?>" placeholder="" class="form-control" value="<?php echo ($user->designation != "") ? $user->designation : ''; ?>">
                                                             </td>
                                                             <td>
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input type="checkbox" name="manage_users[]" id="manage_users-<?php echo $user->uacc_id; ?>" value="1" <?php echo (in_array('Manage Users', $user->permission)) ? 'checked' : '';?>>
+                                                                        <input type="checkbox" name="manage_users[]" id="manage_users-<?php echo $user->uacc_id; ?>" value="1" <?php echo (in_array('Manage Users', $user->permission)) ? 'checked' : ''; ?>>
                                                                     </label>
                                                                 </div>
                                                             </td>
@@ -625,6 +656,99 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <!--tab three-->
+                                    <div class="tab-pane active" id="tabFour">
+                                        <div class="row">
+                                            <h4 class="blue">Residents under Block 1</h4>
+                                            <ul class="list-inline">
+                                                <li>Blocks:</li>
+                                                <li><a href="">1 (3)</a></li>
+                                                <li><a href="">2 (5)</a></li>
+                                                <li><a href="">3 (5)</a></li>
+                                                <li><a href="">All Blocks</a></li>
+                                            </ul>
+                                            <hr/>
+                                            <div class="table-responsive">
+                                                <table id="example" class="table table-bordered no-margin display compact" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Flat</th>
+                                                            <th>Name</th>
+                                                            <th>Intercom</th>
+                                                            <th>User Status</th>
+                                                            <th>Lives Here</th>
+                                                            <th>Primary Contact</th>
+                                                            <th>LastLog</th>
+                                                            <th>Assoc. Member</th>
+                                                            <th>SMS/Email</th>
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Flat</th>
+                                                            <th>Name</th>
+                                                            <th>Intercom</th>
+                                                            <th>User Status</th>
+                                                            <th>Lives Here</th>
+                                                            <th>Primary Contact</th>
+                                                            <th>LastLog</th>
+                                                            <th>Assoc. Member</th>
+                                                            <th>SMS/Email</th>
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><a href="#myModal" data-toggle="modal">1 - 1</a></td>
+                                                            <td>Mehul</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>Owner</td>
+                                                            <td>Y</td>
+                                                            <td>Y</td>
+                                                            <td>12/05/17</td>
+                                                            <td>&nbsp;</td>
+                                                            <td><div class="checkbox">
+                                                                    <label><input type="checkbox"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><a href="#" class="btn btn-link"><span class="icon-edit"></span>&nbsp;Edit</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="#">1 - 2</a></td>
+                                                            <td>Lorem</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>Owner</td>
+                                                            <td>Y</td>
+                                                            <td>Y</td>
+                                                            <td>12/05/17</td>
+                                                            <td>&nbsp;</td>
+                                                            <td><div class="checkbox">
+                                                                    <label><input type="checkbox"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><a href="#" class="btn btn-link"><span class="icon-edit"></span>&nbsp;Edit</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="#">1 - 3</a></td>
+                                                            <td>ipsum</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>Owner</td>
+                                                            <td>Y</td>
+                                                            <td>Y</td>
+                                                            <td>12/05/17</td>
+                                                            <td>&nbsp;</td>
+                                                            <td><div class="checkbox">
+                                                                    <label><input type="checkbox"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><a href="#" class="btn btn-link"><span class="icon-edit"></span>&nbsp;Edit</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -826,6 +950,11 @@
                     return true;
                 error.html(errorMsg);
             }
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
         </script>
     </body>
 </html>
