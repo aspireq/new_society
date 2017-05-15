@@ -116,4 +116,19 @@ class Common_model extends CI_Model {
         return false;
     }
 
+    function get_albums() {
+        $this->db->select();
+        $this->db->from('albums');
+        $this->db->where('status', 1);
+        $qry = $this->db->get();
+        $final_data = array();
+        foreach ($qry->result() as $key => $row) {
+            $final_data[$key] = $row;
+            $result_arr = $this->db->query('select image as image,count(*) as total_images from album_images where album_id = "' . $row->id . '"')->row();
+            $final_data[$key]->image = $result_arr->image;
+            $final_data[$key]->total_images = $result_arr->total_images;
+        }
+        return $final_data;
+    }
+
 }

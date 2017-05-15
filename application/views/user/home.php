@@ -206,7 +206,7 @@
                                                         <div class="collapse" id="createalbum">
                                                             <br/>
                                                             <input type="text" name="album_name" id="album_name" placeholder="Album Name" class="form-control" value="<?php echo (!empty($albumdata) && $albumdata['album_name'] != "") ? $albumdata['album_name'] : ''; ?>" >
-                                                            <input type="text" name="page_type" id="page_type" value="Photos">
+                                                            <input type="hidden" name="page_type" id="page_type" value="Photos">
                                                             <input id="input-44" name="userFiles[]" type="file" multiple class="file-loading">
                                                             <div id="errorBlock" class="help-block"></div>
                                                             <button class="btn btn-info" type="submit" name="add_album" id="add_album" value="add_album">Save</button>
@@ -218,37 +218,27 @@
                                                 <div class="col-md-12">
                                                     <br/>
                                                 </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="thumbnail">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="...">
-                                                        <div class="caption">
-                                                            <p><span>Album 1 (4 Images)</span><span class="pull-right"><i class="icon-watch_later"></i>&nbsp;18 April 2017</span></p>
+                                                <?php foreach ($albums as $album) { ?>
+                                                    <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail" onclick="get_album('<?php echo $album->id; ?>', '<?php echo $album->album_name; ?>')">
+                                                            <img src="<?php echo base_url(); ?>include_files/albums/<?php echo ($album->image != "" && (file_exists(FCPATH . 'include_files/albums/' . $album->image))) ? $album->image : 'noimage.jpg' ?>" alt="...">
+                                                            <div class="caption">
+                                                                <p><span><?php echo $album->album_name; ?> (<?php echo $album->total_images; ?>)</span><span class="pull-right"><i class="icon-watch_later"></i>&nbsp;<?php echo $album->created_date; ?></span></p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         <div class="albumimages hidden">
                                             <div class="row">
-                                                <div id="album_images">
-                                                    <div class="col-md-12">
-                                                        <h4>Album Name 
-                                                            <button class="btn btn-warning btn-back pull-right">Back</button>
-                                                        </h4>
-                                                        <br/>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <img src="<?php echo base_url(); ?>include_files/admin/img/not-found.jpg" alt="" class="img-responsive" />
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <h4><span id="final_album_name">Album Name</span>
+                                                        <button class="btn btn-warning btn-back pull-right">Back</button>
+                                                    </h4>
+                                                    <br/>
+                                                </div>
+                                                <div id="album_images">                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -333,7 +323,7 @@
                                     </div>
                                     <!-- tab three -->
                                     <div class="tab-pane <?php echo ($type == "Notice") ? 'active' : ''; ?>" id="tabFour">
-                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'         ?>">
+                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'                 ?>">
                                             <form class="form-horizontal col-sm-8" method="post">
                                                 <div class="form-group">
                                                     <div class="radio col-sm-12">
@@ -567,6 +557,20 @@
             }
         </script>
         <script type="text/javascript">
+            function get_album(album_id, ablum_name) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>user/get_album_images/",
+                    type: "POST",
+                    data: {album_id: album_id, ablum_name: ablum_name},
+                    dataType: "JSON",
+                    success: function (data)
+                    {
+                        $('#album_images').empty();
+                        $('#final_album_name').text(ablum_name);
+                        $('#album_images').html(data);
+                    }
+                });
+            }
             $(document).ready(function () {
                 $('#add_notice').click(function () {
                     var textareaval = $('.Editor-editor').html();

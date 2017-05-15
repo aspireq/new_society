@@ -39,6 +39,7 @@ class User extends CI_Controller {
     }
 
     function home() {
+        $this->data['albums'] = $this->Common_model->get_albums();
         $this->load->library('form_validation');
         $type = "News";
         if (strpos($_SERVER['HTTP_REFERER'], 'auth_admin') || strpos($_SERVER['HTTP_REFERER'], 'home') || $this->uri->segment(3) != "") {
@@ -119,9 +120,6 @@ class User extends CI_Controller {
                 if ($this->input->post('edit_id')) {
                     $result = $this->Common_model->select_update('notices', $noticedata, array('id' => $this->input->post('edit_id')));
                 } else {
-                    echo "<pre>";
-                    print_r($noticedata);
-                    die();
                     $result = $this->Common_model->insert('notices', $noticedata);
                 }
                 if ($result) {
@@ -139,9 +137,8 @@ class User extends CI_Controller {
         } else if ($this->input->post('add_album') == 'add_album') {
             $this->form_validation->set_rules('album_name', 'Album Name', 'required');
             //$this->form_validation->set_rules('userFiles', 'Images', 'required');
-
-
             if ($this->form_validation->run() == true) {
+                $album_id = $this->Common_model->inserted_id('albums', array('user_id' => $this->user_id, 'album_name' => $this->input->post('album_name')));
                 if (!empty($_FILES['userFiles']['name'])) {
                     $filesCount = count($_FILES['userFiles']['name']);
                     for ($i = 0; $i < $filesCount; $i++) {
@@ -159,15 +156,14 @@ class User extends CI_Controller {
                         $this->upload->initialize($config);
                         if ($this->upload->do_upload('userFile')) {
                             $fileData = $this->upload->data();
-                            $uploadData[$i]['user_id'] = $this->user_id;
-                            $uploadData[$i]['album_name'] = $this->input->post('album_name');
+                            $uploadData[$i]['album_id'] = $album_id;
                             $uploadData[$i]['image'] = $fileData['file_name'];
                         }
                     }
                     if (!empty($uploadData)) {
-                        $insert = $this->db->insert_batch('albums', $uploadData);
+                        $insert = $this->db->insert_batch('album_images', $uploadData);
                     }
-                    $statusMsg = ($business_id || $edit_business_id || $insert) ? 'Album has been saved succesfully !' : 'Some problem occurred, please try again.';
+                    $statusMsg = ($album_id || $edit_business_id || $insert) ? 'Album has been saved succesfully !' : 'Some problem occurred, please try again.';
                     $this->data['message'] = $statusMsg;
                     $this->data['message_type'] = ($business_id || $edit_business_id || $insert) ? true : false;
                 }
@@ -185,6 +181,20 @@ class User extends CI_Controller {
     function myflats() {
         $this->data = $this->include_files();
         $this->load->view('user/myflats', $this->data);
+    }
+
+    function get_album_images() {
+        $album_id = $this->input->post('album_id');
+        $images = $this->Common_model->select_where('album_images', array('album_id' => $album_id));
+        $data = "";
+        foreach ($images as $image) {
+            $image_name = ($image->image != "" && (file_exists(FCPATH . 'include_files/albums/' . $image->image))) ? $image->image : 'noimage.jpg';
+            
+            $data .= '<div class="col-md-3">';
+            $data .= '<img src="'.base_url().'include_files/albums/'.$image_name.'" alt="" class="img-responsive" />';
+            $data .= '</div>';
+        }
+        die(json_encode($data));
     }
 
 }
