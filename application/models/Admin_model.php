@@ -120,7 +120,7 @@ class Admin_model extends CI_Model {
 
     function get_users($appartment_id, $user_id) {
         $this->db->select();
-        $this->db->from('user_accounts');
+        $this->db->from('user_accounts'); 
         $this->db->where('appartment_id', $appartment_id);
         $this->db->where('uacc_id !=', $user_id);
         $qry = $this->db->get();

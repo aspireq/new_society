@@ -163,5 +163,5 @@
         <script src="<?php echo base_url();?>include_files/admin/js/c3/c3.custom.js"></script>
         <script src="<?php echo base_url();?>include_files/admin/js/themeSwitcher.js"></script>
         <script src="<?php echo base_url();?>include_files/admin/js/common.js"></script>
-    </body>
+    </body> 
 </html>

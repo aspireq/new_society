@@ -39,7 +39,7 @@ class User extends CI_Controller {
     }
 
     function home() {
-        $this->data['albums'] = $this->Common_model->get_albums();
+        $this->data['albums'] = $this->Common_model->get_albums();        
         $this->load->library('form_validation');
         $type = "News";
         if (strpos($_SERVER['HTTP_REFERER'], 'auth_admin') || strpos($_SERVER['HTTP_REFERER'], 'home') || $this->uri->segment(3) != "") {
@@ -172,6 +172,31 @@ class User extends CI_Controller {
                 $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
                 $this->data['message_type'] = false;
             }
+        } else if ($this->input->post('add_group') == 'add_group') {
+            $this->form_validation->set_rules('group_name', 'Group Name', 'required');                       
+            $groupdata = array(
+                "user_id" => $this->user_id,
+                "type" => $this->input->post('group_type'),
+                "group_name" => $this->input->post('group_name'),
+                "group_description" => $this->input->post('group_description'));
+            if ($this->form_validation->run() == true) {
+                if ($this->input->post('edit_id')) {
+                    $result = $this->Common_model->select_update('groups', $groupdata, array('id' => $this->input->post('edit_id')));
+                } else {
+                    $result = $this->Common_model->insert('groups', $groupdata);
+                }
+                if ($result) {
+                    $this->data['message'] = "Information saved successfully";
+                    $this->data['message_type'] = true;
+                } else {
+                    $this->data['message'] = "Try again later...";
+                    $this->data['message_type'] = false;
+                }
+            } else {
+                $this->data['groupdata'] = $groupdata;
+                $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
+                $this->data['message_type'] = false;
+            }
         }
         $this->data['type'] = $type;
         $this->data = $this->include_files();
@@ -189,9 +214,9 @@ class User extends CI_Controller {
         $data = "";
         foreach ($images as $image) {
             $image_name = ($image->image != "" && (file_exists(FCPATH . 'include_files/albums/' . $image->image))) ? $image->image : 'noimage.jpg';
-            
+
             $data .= '<div class="col-md-3">';
-            $data .= '<img src="'.base_url().'include_files/albums/'.$image_name.'" alt="" class="img-responsive" />';
+            $data .= '<img src="' . base_url() . 'include_files/albums/' . $image_name . '" alt="" class="img-responsive" />';
             $data .= '</div>';
         }
         die(json_encode($data));

@@ -85,7 +85,7 @@ class Demo_auth_model extends CI_Model {
     function register_account() {
 
         $this->load->library('form_validation');
-        $validation_rules = array(
+        $validation_rules = array( 
             array('field' => 'register_email_address', 'label' => 'Email Address', 'rules' => 'required|valid_email'),
             array('field' => 'register_username', 'label' => 'Username', 'rules' => 'required|min_length[4]|identity_available'),
             array('field' => 'passwordmain', 'label' => 'Password', 'rules' => 'required|validate_password'),

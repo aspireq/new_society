@@ -38,7 +38,7 @@
             </li>
         </ul>
     </div>
-    <?php if($userinfo['uacc_group_fk'] == 3) { ?>
+    <?php if($userinfo['uacc_group_fk'] == 3) {  ?>
     <a href="<?php echo base_url(); ?>auth_admin" class="support">Admin</a>
     <?php } ?>
     <div class="custom-search"><input type="text" class="search-query" placeholder="Search here ..."> <i class="icon-search4"></i></div>

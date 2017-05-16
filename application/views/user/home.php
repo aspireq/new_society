@@ -166,36 +166,37 @@
 
                                     <div class="tab-pane <?php echo ($type == "Groups") ? 'active' : ''; ?>" id="tabOne">
                                         <a class="btn btn-info">Discover And Join Group</a>
-                                        <a class="btn btn-info" data-toggle="collapse" href="#creategroup" aria-expanded="false" aria-controls="creategroup">Create a Group</a>
-                                        <div class="collapse" id="creategroup">
+                                        <a class="btn btn-info" data-toggle="collapse" href="#creategroup" aria-expanded="<?php echo ($type == "Groups") ? 'true' : 'false'; ?>" aria-controls="creategroup">Create a Group</a>
+                                        <div class="collapse <?php echo ($type == "Groups") ? 'in' : ''; ?>" id="creategroup">
                                             <div class="well">
-                                                <form>
+                                                <form method="post">
                                                     <div class="form-group">
                                                         <label class="control-label">Group Name</label>
-                                                        <input class="form-control" type="text" placeholder="">
+                                                        <input class="form-control" type="text" name="group_name" id="group_name" value="<?php echo (!empty($groupdata) && $groupdata['group_name'] != "") ? $groupdata['group_name'] : ''; ?>" >
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Group Description</label>
-                                                        <textarea class="form-control" placeholder=""></textarea>
+                                                        <textarea class="form-control" name="group_description"><?php echo (!empty($groupdata) && $groupdata['group_description'] != "") ? $groupdata['group_description'] : ''; ?></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="permission" id="" value="1" checked>Open For All
-                                                            </label> 
+                                                                <input type="radio" name="group_type" id="open_to_all" value="1" checked>Open For All
+                                                            </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="permission" id="" value="2">Restricted
+                                                                <input type="radio" name="group_type" id="restricated" value="2">Restricted
                                                             </label>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="page_type" id="page_type" value="Groups">
                                                     <div class="form-group">
-                                                        <button class="btn btn-info">Create</button>
+                                                        <button class="btn btn-info" type="submit" name="add_group" id="add_group" value="add_group">Create</button>
                                                         <button class="btn btn-default">Cancel</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <!-- tab one -->
                                     <div class="tab-pane <?php echo ($type == "Photos") ? 'active' : ''; ?>" id="tabTwo">
                                         <div class="createalbum">
@@ -248,17 +249,17 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h4>Start a Poll :</h4>
-                                                <form class="form-horizontal row">
+                                                <form class="form-horizontal row" method="post">
                                                     <div class="form-group col-md-8">
                                                         <label for="1" class="col-sm-2 control-label">Topic</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="1" placeholder="">
+                                                            <input type="text" class="form-control" id="topic" name="topic">
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-8">
                                                         <label for="1" class="col-sm-2 control-label">Poll Description</label>
                                                         <div class="col-sm-10">
-                                                            <textarea type="text" class="form-control"></textarea> 
+                                                            <textarea type="text" class="form-control" name="poll_description"></textarea> 
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-8">
@@ -284,7 +285,7 @@
                                                     <div class="form-group col-md-8">
                                                         <label for="1" class="col-sm-2 control-label">Poll Expiry Date</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="1" placeholder="dd-mm-yyyy"> 
+                                                            <input type="text" class="form-control" id="poll_expiry_date" name="poll_expiry_date" placeholder="yyyy-mm-dd"> 
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-8">
@@ -323,7 +324,7 @@
                                     </div>
                                     <!-- tab three -->
                                     <div class="tab-pane <?php echo ($type == "Notice") ? 'active' : ''; ?>" id="tabFour">
-                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'                 ?>">
+                                        <div class="createnotice row hidden <?php //echo ($message_type == false) ? '' : 'hidden'                                    ?>">
                                             <form class="form-horizontal col-sm-8" method="post">
                                                 <div class="form-group">
                                                     <div class="radio col-sm-12">

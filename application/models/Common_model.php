@@ -121,7 +121,7 @@ class Common_model extends CI_Model {
         $this->db->from('albums');
         $this->db->where('status', 1);
         $qry = $this->db->get();
-        $final_data = array();
+        $final_data = array(); 
         foreach ($qry->result() as $key => $row) {
             $final_data[$key] = $row;
             $result_arr = $this->db->query('select image as image,count(*) as total_images from album_images where album_id = "' . $row->id . '"')->row();

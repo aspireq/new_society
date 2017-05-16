@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2017 at 07:20 AM
+-- Generation Time: May 16, 2017 at 07:51 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -19,6 +19,56 @@ SET time_zone = "+00:00";
 --
 -- Database: `society`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `albums`
+--
+
+CREATE TABLE `albums` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `album_name` varchar(255) DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `albums`
+--
+
+INSERT INTO `albums` (`id`, `user_id`, `album_name`, `created_date`, `status`) VALUES
+(1, 1, 'Sample Album', '2017-05-16 05:28:14', 1),
+(2, 1, 'Job Fare', '2017-05-16 05:28:32', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `album_images`
+--
+
+CREATE TABLE `album_images` (
+  `id` int(11) NOT NULL,
+  `album_id` int(11) DEFAULT NULL,
+  `image` text,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `album_images`
+--
+
+INSERT INTO `album_images` (`id`, `album_id`, `image`, `created_date`, `status`) VALUES
+(1, 1, '90f1fb5a2e146ecc3660101dae93f204.jpg', '2017-05-16 05:28:14', 1),
+(2, 1, '77319ab95216b556ecf9a39d617bd2f8.jpg', '2017-05-16 05:28:14', 1),
+(3, 1, '635736ca99c5836981b87ec197cbbf82.jpg', '2017-05-16 05:28:14', 1),
+(4, 1, 'c75c5d5b23866b0dc73879bb377a9744.jpg', '2017-05-16 05:28:14', 1),
+(5, 2, '76874a6d5efd833cc3c4174219c07100.jpg', '2017-05-16 05:28:32', 1),
+(6, 2, '2e68312a8f4df7323aa312565bf8368d.jpg', '2017-05-16 05:28:32', 1),
+(7, 2, '3412139d7c6f05ebb989369e9aa65254.jpg', '2017-05-16 05:28:32', 1),
+(8, 2, 'ca57ff37c1fe44a94523fe69d52098e0.jpg', '2017-05-16 05:28:32', 1);
 
 -- --------------------------------------------------------
 
@@ -48776,6 +48826,30 @@ INSERT INTO `demo_user_profiles` (`upro_id`, `upro_uacc_fk`, `upro_company`, `up
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `group_name` varchar(255) NOT NULL,
+  `group_description` text,
+  `type` int(11) DEFAULT NULL COMMENT '1 - Open For All, 2 - Restricted ',
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `user_id`, `group_name`, `group_description`, `type`, `created_date`, `status`) VALUES
+(1, 1, 'asfasfasf', 'asfsafasf', 1, '2017-05-16 10:32:45', 1),
+(2, 1, 'Senior Citizens', 'this group is created for society\'s senior memebers', 2, '2017-05-16 10:54:20', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notices`
 --
 
@@ -48801,6 +48875,23 @@ INSERT INTO `notices` (`id`, `user_id`, `type`, `subject`, `from_email`, `expiry
 (2, 1, 'General', 'sdfsafasfsaf sefasfsaf', 'admin@admin.com', '2017-05-12', 'asfasf', 'All Users', '<span style=\"font-weight: bold;\">asfasfsafasfasf</span>', '2017-05-12 08:41:25', 1),
 (3, 1, 'General', 'sdfsafasfsaf sefasfsaf', 'admin@admin.com', '2017-05-12', 'asfasf', 'All Users', '<span style=\"font-weight: bold;\">asfasfsafasfasf</span>', '2017-05-12 08:41:25', 1),
 (4, 1, 'General', 'sdfsafasfsaf sefasfsaf', 'admin@admin.com', '2017-05-12', 'asfasf', 'All Users', '<span style=\"font-weight: bold;\">asfasfsafasfasf</span>', '2017-05-12 08:41:25', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `polls`
+--
+
+CREATE TABLE `polls` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `topic` text,
+  `description` text NOT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `vote_type` int(11) DEFAULT NULL COMMENT '1 - Multiple Votes, 2 - One Vote/Flat, 3 - Anonymous Voting',
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -52979,7 +53070,7 @@ CREATE TABLE `user_accounts` (
 --
 
 INSERT INTO `user_accounts` (`uacc_id`, `uacc_group_fk`, `uacc_email`, `uacc_username`, `uacc_password`, `user_type`, `apartmentname`, `appartment_id`, `is_commitee_member`, `designation`, `uacc_ip_address`, `uacc_salt`, `uacc_activation_token`, `uacc_forgotten_password_token`, `uacc_forgotten_password_expire`, `uacc_update_email_token`, `uacc_update_email`, `uacc_active`, `uacc_suspend`, `uacc_fail_login_attempts`, `uacc_fail_login_ip_address`, `uacc_date_fail_login_ban`, `uacc_date_last_login`, `uacc_date_added`) VALUES
-(1, 3, 'admin@admin.com', 'admin', '$2a$08$lSOQGNqwBFUEDTxm2Y.hb.mfPEAt/iiGY9kJsZsd4ekLJXLD.tCrq', NULL, 'aspireq', 366581, 0, NULL, '::1', 'XKVT29q2Jr', '', '1e30025e37a60d90b39f79d4668f3945d42955d5', '2017-04-19 09:33:31', '', '', 1, 0, 0, '::1', '2017-04-11 10:48:53', '2017-05-13 07:13:46', '2011-01-01 00:00:00'),
+(1, 3, 'admin@admin.com', 'admin', '$2a$08$lSOQGNqwBFUEDTxm2Y.hb.mfPEAt/iiGY9kJsZsd4ekLJXLD.tCrq', NULL, 'aspireq', 366581, 0, NULL, '::1', 'XKVT29q2Jr', '', '1e30025e37a60d90b39f79d4668f3945d42955d5', '2017-04-19 09:33:31', '', '', 1, 0, 0, '::1', '2017-04-11 10:48:53', '2017-05-16 06:43:07', '2011-01-01 00:00:00'),
 (2, 2, 'user@society.com', 'society', '$2a$08$7UzYgEuomZIErp6QU1ovzOHvB4d2.E5awHkfp.rvRwvPdvfFNm6iC', NULL, 'aspireq', 366581, 1, 'Gate Keeper', '::1', 'ZC38NNBPjF', '', '', '0000-00-00 00:00:00', '', '', 1, 0, 0, '', '0000-00-00 00:00:00', '2017-05-12 12:14:46', '2011-08-04 16:49:07');
 
 -- --------------------------------------------------------
@@ -53016,14 +53107,6 @@ CREATE TABLE `user_login_sessions` (
   `usess_token` varchar(40) NOT NULL DEFAULT '',
   `usess_login_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_login_sessions`
---
-
-INSERT INTO `user_login_sessions` (`usess_uacc_fk`, `usess_series`, `usess_token`, `usess_login_date`) VALUES
-(1, '', 'dade04b8bd36d80699a062f3df9bad521fb21625', '2017-05-13 07:14:00'),
-(1, '', 'fc87f131a9a6079b0670e2530d46962a5b0c6ce9', '2017-05-12 14:31:52');
 
 -- --------------------------------------------------------
 
@@ -53126,6 +53209,18 @@ INSERT INTO `user_privilege_users` (`upriv_users_id`, `upriv_users_uacc_fk`, `up
 --
 
 --
+-- Indexes for table `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `album_images`
+--
+ALTER TABLE `album_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `appartment_images`
 --
 ALTER TABLE `appartment_images`
@@ -53173,9 +53268,21 @@ ALTER TABLE `demo_user_profiles`
   ADD KEY `upro_uacc_fk` (`upro_uacc_fk`) USING BTREE;
 
 --
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `notices`
 --
 ALTER TABLE `notices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `polls`
+--
+ALTER TABLE `polls`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -53239,6 +53346,16 @@ ALTER TABLE `user_privilege_users`
 --
 
 --
+-- AUTO_INCREMENT for table `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `album_images`
+--
+ALTER TABLE `album_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `appartment_images`
 --
 ALTER TABLE `appartment_images`
@@ -53269,10 +53386,20 @@ ALTER TABLE `demo_user_address`
 ALTER TABLE `demo_user_profiles`
   MODIFY `upro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `notices`
 --
 ALTER TABLE `notices`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `polls`
+--
+ALTER TABLE `polls`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `states`
 --

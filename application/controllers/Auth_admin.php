@@ -88,13 +88,13 @@ class Auth_admin extends CI_Controller {
         $this->data = $this->include_files();
         $this->load->view('admin/manage_users', $this->data);
     }
-    
+
     function profile_setup() {
         if ($this->input->post('add_images') == 'add_images') {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('code', 'Code', 'trim|required');
 //            if (empty($_FILES['userFiles']['name'][0])) {
-//                $this->form_validation->set_rules('images', 'Image', 'required');
+//                $this->form_validation->set_rules('userFiles', 'Image', 'required');
 //            }
             if ($this->form_validation->run() == true) {
                 $old_images_post = $this->input->post('old_company_images');
@@ -172,6 +172,7 @@ class Auth_admin extends CI_Controller {
             $this->data['message'] = "Appartment information saved succesfully !";
             $this->data['message_type'] = true;
         }
+        
         $this->data['appartment_info'] = $this->Common_model->select_where_row('appartment_info', array('user_id' => $this->user_id));
         $this->data['appartment_images'] = $this->Common_model->select_where('appartment_images', array('user_id' => $this->user_id));
         $this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
