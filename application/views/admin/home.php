@@ -21,13 +21,13 @@
                 <div class="main-container">
                     <div class="row gutter">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <a href="#" class="block-60 green-bg">
+                            <a href="#" class="block-60 orange-bg">
                                 <h1>SMS</h1>
                                 <h5>Send to member</h5>
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <a href="#" class="block-60 violet-bg">
+                            <a href="#" class="block-60 yellow-bg">
                                 <h1>Post Notice</h1>
                                 <h5>Send to Adda</h5>
                             </a>
@@ -39,7 +39,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a href="<?php echo base_url();?>user/home" class="block-60 orange-bg">
+                            <a href="<?php echo base_url();?>user/home" class="block-60 fb-bg">
                                 <h1>Post Notice</h1>
                                 <h5>Notice in your Adda</h5>
                             </a>
