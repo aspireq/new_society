@@ -39,6 +39,8 @@ class User extends CI_Controller {
     }
 
     function home() {
+        $this->data['albums'] = $this->Common_model->get_albums();
+        $this->load->library('form_validation');
         $type = "News";
         if (strpos($_SERVER['HTTP_REFERER'], 'auth_admin') || strpos($_SERVER['HTTP_REFERER'], 'home') || $this->uri->segment(3) != "") {
             $type = "Notice";
@@ -101,7 +103,6 @@ class User extends CI_Controller {
         $this->data["links"] = explode('&nbsp;', $str_links);
 
         if ($this->input->post('add_notice') == 'add_notice') {
-            $this->load->library('form_validation');
             $this->form_validation->set_rules('notice_email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('notice_subject', 'Subject', 'required');
             $this->form_validation->set_rules('notice_expiry_date', 'Expiry Date', 'required');
@@ -119,9 +120,6 @@ class User extends CI_Controller {
                 if ($this->input->post('edit_id')) {
                     $result = $this->Common_model->select_update('notices', $noticedata, array('id' => $this->input->post('edit_id')));
                 } else {
-                    echo "<pre>";
-                    print_r($noticedata);
-                    die();
                     $result = $this->Common_model->insert('notices', $noticedata);
                 }
                 if ($result) {
@@ -136,6 +134,44 @@ class User extends CI_Controller {
                 $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
                 $this->data['message_type'] = false;
             }
+        } else if ($this->input->post('add_album') == 'add_album') {
+            $this->form_validation->set_rules('album_name', 'Album Name', 'required');
+            //$this->form_validation->set_rules('userFiles', 'Images', 'required');
+            if ($this->form_validation->run() == true) {
+                $album_id = $this->Common_model->inserted_id('albums', array('user_id' => $this->user_id, 'album_name' => $this->input->post('album_name')));
+                if (!empty($_FILES['userFiles']['name'])) {
+                    $filesCount = count($_FILES['userFiles']['name']);
+                    for ($i = 0; $i < $filesCount; $i++) {
+                        $_FILES['userFile']['name'] = $_FILES['userFiles']['name'][$i];
+                        $_FILES['userFile']['type'] = $_FILES['userFiles']['type'][$i];
+                        $_FILES['userFile']['tmp_name'] = $_FILES['userFiles']['tmp_name'][$i];
+                        $_FILES['userFile']['error'] = $_FILES['userFiles']['error'][$i];
+                        $_FILES['userFile']['size'] = $_FILES['userFiles']['size'][$i];
+
+                        $uploadPath = 'include_files/albums';
+                        $config['upload_path'] = $uploadPath;
+                        $config['allowed_types'] = 'gif|jpg|png';
+                        $config['encrypt_name'] = TRUE;
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('userFile')) {
+                            $fileData = $this->upload->data();
+                            $uploadData[$i]['album_id'] = $album_id;
+                            $uploadData[$i]['image'] = $fileData['file_name'];
+                        }
+                    }
+                    if (!empty($uploadData)) {
+                        $insert = $this->db->insert_batch('album_images', $uploadData);
+                    }
+                    $statusMsg = ($album_id || $edit_business_id || $insert) ? 'Album has been saved succesfully !' : 'Some problem occurred, please try again.';
+                    $this->data['message'] = $statusMsg;
+                    $this->data['message_type'] = ($business_id || $edit_business_id || $insert) ? true : false;
+                }
+            } else {
+                $this->data['albumdata'] = array('album_name' => $this->input->post('album_name'));
+                $this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
+                $this->data['message_type'] = false;
+            }
         }
         $this->data['type'] = $type;
         $this->data = $this->include_files();
@@ -145,6 +181,20 @@ class User extends CI_Controller {
     function myflats() {
         $this->data = $this->include_files();
         $this->load->view('user/myflats', $this->data);
+    }
+
+    function get_album_images() {
+        $album_id = $this->input->post('album_id');
+        $images = $this->Common_model->select_where('album_images', array('album_id' => $album_id));
+        $data = "";
+        foreach ($images as $image) {
+            $image_name = ($image->image != "" && (file_exists(FCPATH . 'include_files/albums/' . $image->image))) ? $image->image : 'noimage.jpg';
+            
+            $data .= '<div class="col-md-3">';
+            $data .= '<img src="'.base_url().'include_files/albums/'.$image_name.'" alt="" class="img-responsive" />';
+            $data .= '</div>';
+        }
+        die(json_encode($data));
     }
 
 }
