@@ -39,7 +39,7 @@
                                         <p>Here you can enter a greeting message for outsiders, instructions for owners/tenants to join your ADDA, status of your Project ( if it is under construction) etc.</p>
                                         <form method="post">
                                             <div class="form-group">                                                
-                                                <textarea id="txtEditor" name="txtEditor" rows="10" cols="130"><?php echo (!empty($appartment_info) && $appartment_info->info != "") ? $appartment_info->info : '' ?></textarea>
+                                                <textarea id="txtEditor" name="txtEditor" rows="10" class="form-control"><?php echo (!empty($appartment_info) && $appartment_info->info != "") ? $appartment_info->info : '' ?></textarea>
                                             </div>
                                             <button class="btn btn-info" name="add_info" id="add_info" value="add_info" type="submit">Save</button>
                                         </form>
